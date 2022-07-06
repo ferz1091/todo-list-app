@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 // Reducers
 import * as reducers from './reducers';
 
-const initialState = [{name: 'Artem'}];
+const initialState = {tasks: [], lists: []};
  
 export const generalSlice = createSlice({
     name: 'general',

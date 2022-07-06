@@ -6,10 +6,18 @@ import { generalActions } from './slice';
 
 export const useGeneral = () => {
     const dispatch = useDispatch();
-    function saveTask(task) {
-        dispatch(generalActions.saveTask(task))
+    function addTask(task) {
+        dispatch(generalActions.addTask(task))
+    }
+    function addList(list) {
+        dispatch(generalActions.addList(list))
+    }
+    function toggleListIsOpen(name) {
+        dispatch(generalActions.toggleListIsOpen(name))
     }
     return {
-        saveTask,
+        addTask,
+        addList,
+        toggleListIsOpen,
     }
 }

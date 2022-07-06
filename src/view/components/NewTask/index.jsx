@@ -1,16 +1,14 @@
 // Core
+import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-
-// Bus
-import { useGeneral } from '../../../bus/general';
 
 // Styles
 import { NewTaskWrapper } from './styles';
 
 export const NewTask = (props) => {
 
-    const {saveTask} = useGeneral();
+    const lists = useSelector(state => state.general.lists);
 
     const validationSchema = Yup.object().shape({
         name: Yup.string()
@@ -35,21 +33,28 @@ export const NewTask = (props) => {
             time: '',
             date: '',
             deadline: '',
+            list: '',
         },
         validationSchema,
         onSubmit: values => {
-            saveTask(values);
+            props.addTask(values);
+            props.toggleNewTaskModalActive(false)
         }
     })
 
     return (
-        <NewTaskWrapper onClick={() => props.setModalActive(false)} className='NewTask-modal'>
+        <NewTaskWrapper onClick={() => props.toggleNewTaskModalActive(false)} className='NewTask-modal'>
             <div className='modal' onClick={(e) => e.stopPropagation()}>
                 <form onSubmit={formik.handleSubmit}>
                     <label htmlFor='name'>{formik.errors.name && formik.touched.name ? <div className='error'>{formik.errors.name}</div> : 'Name'}</label>
                     <input className={formik.errors.name && formik.touched.name ? 'input-error' : 'input'} id='name' name='name' type='text' onChange={formik.handleChange} onBlur ={formik.handleBlur} value={formik.values.name} />
                     <label htmlFor='description'>{formik.errors.description && formik.touched.description ? <div className='error'>{formik.errors.description}</div> : 'What should be done?'}</label>
                     <input className={formik.errors.description && formik.touched.description ? 'input-error' : 'input'} id='description' name='description' type='text' onChange={formik.handleChange} onBlur = {formik.handleBlur} value={formik.values.description} />
+                    <label htmlFor='list'>What list does the task belong to?</label>
+                    <select disabled = {lists.length === 0 ? true : false} id='list' name='list' type='text' onChange={formik.handleChange}>
+                        <option value = {''}>-</option>
+                        {lists.length !== 0 ? lists.map((list, index) => <option key = {index} value = {list.name}>{list.name}</option>) : null}
+                    </select>
                     <label htmlFor='time'>Time</label>
                     <input id='time' name='time' type='time' onChange={formik.handleChange} value={formik.values.time} />
                     <label className={formik.errors.deadline && formik.touched.deadline ? 'deadline-error' : 'deadline'} htmlFor='deadline'>

@@ -1,7 +1,7 @@
 // Core
 import styled from 'styled-components';
 
-export const NewTaskWrapper = styled.div`
+export const NewListWrapper = styled.div`
 position: fixed;
 top: 0; left: 0;
 width: 100vw;
@@ -18,12 +18,8 @@ background-color: rgba(50,50,50, 0.5);
     form {
         display: flex;
         flex-direction: column;
-        .deadline, .deadline-error {
-            display: flex;
-            justify-content: space-around;
-        }
-        .deadline-error {
-            background-color: rgba(255, 0, 0, 0.2);
+        .error {
+            color: red;
         }
         .input-error {
             background-color: rgba(255, 0, 0, 0.2);
@@ -32,9 +28,6 @@ background-color: rgba(50,50,50, 0.5);
         }
         .input-error:focus {
             background-color: white;
-        }
-        .error {
-            color: red;
         }
         input, select {
             border-radius: 5px;
@@ -50,9 +43,6 @@ background-color: rgba(50,50,50, 0.5);
             padding-top: 5px;
             input {
                 padding: 5px;
-            }
-            input:active {
-                background-color: gray;
             }
         }
     }
