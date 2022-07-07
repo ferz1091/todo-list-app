@@ -1,7 +1,6 @@
-// Core
 import styled from 'styled-components';
 
-export const MainWrapper = styled.div`
+export const TodayWrapper = styled.section`
 position: relative;
 border-radius: 15px;
 background-color: white;
@@ -15,10 +14,22 @@ margin: 0 10px 5px 10px;
     width: 100%;
     height: 100%;
 }
-.Empty-tasks-div:hover {
-    border: 2px solid rgb(0,166,186);
-    border-radius: 15px;
-    background-color: rgba(0,166,186, 0.1);
+.task {
+    border-bottom: 1px solid black;
+}
+.title, .sorted, .unsorted, .list {
+    background-color: gray;
+    border: 1px solid black;
+    padding-left: 5px;
+}
+.sorted, .unsorted {
+    background-color: red;
+}
+.list {
+    background-color: blue;
+}
+.prop {
+    padding-left: 5px;
 }
 button {
     position: absolute;

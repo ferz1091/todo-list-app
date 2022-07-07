@@ -44,6 +44,10 @@ background-color: rgba(50,50,50, 0.5);
             border: 1px solid black;
             outline: none;
         }
+        input:disabled {
+                background-color: rgba(50,50,50, 0.3);
+                border: 1px solid gray;
+            }
         .submit {
             display: flex;
             justify-content: center;

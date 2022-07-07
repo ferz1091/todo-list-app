@@ -1,8 +1,9 @@
 // Core
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 // Pages
-import { Main } from './view/pages';
+import { Today } from './view/pages';
 
 // Components
 import { Navbar, Header } from './view/components';
@@ -11,6 +12,8 @@ import { Navbar, Header } from './view/components';
 import { AppWrapper, ContentWrapper } from './styles';
 
 const App = () => {
+  const lists = useSelector(state => state.general.lists);
+
   return (
     <BrowserRouter>
       <AppWrapper>
@@ -19,8 +22,18 @@ const App = () => {
           <Navbar />
           <Routes>
             <Route 
-              path='*'
-              element={<Main />}/>
+              path='/'
+              element={<Today />}
+            />
+            <Route 
+              path='/i'
+              element={<div>important</div>}
+            />
+            <Route 
+              path='/p'
+              element={<div>planned</div>}
+            />
+            {lists.length !== 0 ? lists.map((list, index) => <Route key = {index} path = {`/${list.name}`} element={<div>{list.name}</div>}/>) : null}
           </Routes>
         </ContentWrapper>
       </AppWrapper>

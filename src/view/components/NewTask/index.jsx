@@ -12,18 +12,33 @@ export const NewTask = (props) => {
 
     const validationSchema = Yup.object().shape({
         name: Yup.string()
-        .min(1, 'Too short!')
+        .min(2, 'Too short!')
         .max(15, 'Too long!')
         .required('Required!'),
         description: Yup.string()
         .min(2, 'Too short!')
-        .max(50, 'Too long!')
-        .required('Required!'),
+        .max(50, 'Too long!'),
+        deadline: Yup.string()
+        .required('Choose one!'),
         date: Yup.date()
-        .min(new Date(new Date() - 86400000), 'Wrong!')
-        .required('Required'),
-        deadline: Yup.boolean()
-        .required('Choose one!')
+        .when('deadline', {
+            is: 'deadline',
+            then: Yup.date()
+            .min(new Date(new Date() - 86400000), 'Wrong!')
+            .required('Required')
+        })
+        .when('deadline', {
+            is: 'exact time',
+            then: Yup.date()
+            .min(new Date(new Date() - 86400000), 'Wrong!')
+            .required('Required')
+        }),
+        time: Yup.string()
+        .when('deadline', {
+            is: 'exact time',
+            then: Yup.string()
+            .required('Required')
+        })
     })
 
     const formik = useFormik({
@@ -37,7 +52,7 @@ export const NewTask = (props) => {
         },
         validationSchema,
         onSubmit: values => {
-            props.addTask(values);
+            props.addTask({ ...values, created: new Date().toLocaleString()});
             props.toggleNewTaskModalActive(false)
         }
     })
@@ -55,16 +70,18 @@ export const NewTask = (props) => {
                         <option value = {''}>-</option>
                         {lists.length !== 0 ? lists.map((list, index) => <option key = {index} value = {list.name}>{list.name}</option>) : null}
                     </select>
-                    <label htmlFor='time'>Time</label>
-                    <input id='time' name='time' type='time' onChange={formik.handleChange} value={formik.values.time} />
+                    <label htmlFor='time'>{formik.errors.time && formik.touched.time ? <div className='error'>{formik.errors.time}</div> : 'Time'}</label>
+                    <input className={formik.errors.time && formik.touched.time ? 'input-error' : 'input'} disabled = {formik.values.deadline === 'not planned'} id='time' name='time' type='time' onChange={formik.handleChange} value={formik.values.time} />
                     <label className={formik.errors.deadline && formik.touched.deadline ? 'deadline-error' : 'deadline'} htmlFor='deadline'>
                         <label htmlFor='deadline-true'>Deadline</label>
-                        <input id='deadline' name='deadline' type='radio' onChange={formik.handleChange} value={true} />
+                        <input id='deadline' name='deadline' type='radio' onChange={formik.handleChange} value={'deadline'} />
                         <label htmlFor='deadline-false'>Exact time</label>
-                        <input id='deadline' name='deadline' type='radio' onChange={formik.handleChange} value={false} />
+                        <input id='deadline' name='deadline' type='radio' onChange={formik.handleChange} value={'exact time'} />
+                        <label htmlFor='deadline-false'>Not planned</label>
+                        <input id='deadline' name='deadline' type='radio' onChange={formik.handleChange} value={'not planned'} />
                     </label>
-                    <label htmlFor='description'>{formik.errors.date && formik.touched.date ? <div className='error'>{formik.errors.date}</div> : 'Date'}</label>
-                    <input className={formik.errors.date && formik.touched.date ? 'input-error' : 'input'} id='date' name='date' type='date' onChange={formik.handleChange} value={formik.values.date} />
+                    <label htmlFor='date'>{formik.errors.date && formik.touched.date ? <div className='error'>{formik.errors.date}</div> : 'Date'}</label>
+                    <input disabled={formik.values.deadline === 'not planned'} className={formik.errors.date && formik.touched.date ? 'input-error' : 'input'} id='date' name='date' type='date' onChange={formik.handleChange} value={formik.values.date} />
                     <label className = 'submit' htmlFor='submit'>
                     <input type='submit' value='Create' />
                     </label>
