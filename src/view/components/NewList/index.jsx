@@ -20,7 +20,7 @@ export const NewList = (props) => {
         },
         validationSchema,
         onSubmit: (values) => {
-            props.addList({...values, tasks: [], isOpen: false});
+            props.addList({...values, tasks: [], isOpen: true});
             props.toggleNewListModalActive(false);
         }
     })
