@@ -1,4 +1,5 @@
 // Core
+import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
@@ -7,11 +8,14 @@ import { NewListWrapper } from './styles';
 
 export const NewList = (props) => {
 
+    const lists = useSelector(state => state.general.lists);
+
     const validationSchema = Yup.object().shape({
         name: Yup.string()
         .min(2, 'Too short!')
         .max(12, 'Too long!')
         .required('Required!')
+        .test('name', 'Such a list already exists!', (name) => lists.every(list => list.name !== name))
     });
 
     const formik = useFormik({

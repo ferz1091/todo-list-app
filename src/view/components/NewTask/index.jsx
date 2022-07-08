@@ -9,12 +9,24 @@ import { NewTaskWrapper } from './styles';
 export const NewTask = (props) => {
 
     const lists = useSelector(state => state.general.lists);
+    const tasks = useSelector(state => state.general.tasks);
 
     const validationSchema = Yup.object().shape({
         name: Yup.string()
         .min(2, 'Too short!')
         .max(15, 'Too long!')
-        .required('Required!'),
+        .required('Required!')
+        .when('list', {
+            is: (list) => !list,
+            then: Yup.string()
+            .test('name', 'This name already exists!', (name) => tasks.every(task => task.name !== name))
+        })
+        .when('list', {
+            is: (list) => list,
+            then: Yup.string()
+            .test('name', 'This name already exists!', (name, context) => lists.filter(list => list.name === context.parent.list)[0].tasks.every(task => task.name !== name))
+        })
+        ,
         description: Yup.string()
         .min(2, 'Too short!')
         .max(50, 'Too long!'),
