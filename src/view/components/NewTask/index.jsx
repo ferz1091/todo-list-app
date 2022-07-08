@@ -52,7 +52,7 @@ export const NewTask = (props) => {
         },
         validationSchema,
         onSubmit: values => {
-            props.addTask({ ...values, created: new Date().toLocaleString()});
+            props.addTask({ ...values, created: new Date().toLocaleString(), important: false});
             props.toggleNewTaskModalActive(false)
         }
     })

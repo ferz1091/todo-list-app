@@ -28,9 +28,6 @@ margin: 0 10px 5px 10px;
 .list {
     background-color: blue;
 }
-.prop {
-    padding-left: 5px;
-}
 button {
     position: absolute;
     bottom: 5%; right: 5%;

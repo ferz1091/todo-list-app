@@ -20,7 +20,8 @@ export const Today = () => {
             toggleNewListModalActive,
             addTask,
             addList,
-            toggleListIsOpen } = useToday();
+            toggleListIsOpen,
+            toggleTaskImportant } = useToday();
     const { sortByDeadline } = useSortToday();
 
     return (
@@ -46,6 +47,7 @@ export const Today = () => {
                                     index={index}
                                     task={task}
                                     tasks={tasks}
+                                    toggleTaskImportant={toggleTaskImportant}
                                 />
                                 :
                                 null
@@ -79,6 +81,7 @@ export const Today = () => {
                                     index={index}
                                     task={task}
                                     tasks={tasks}
+                                    toggleTaskImportant={toggleTaskImportant}
                                 />
                                 :
                                 null

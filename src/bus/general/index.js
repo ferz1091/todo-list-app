@@ -15,9 +15,13 @@ export const useGeneral = () => {
     function toggleListIsOpen(name) {
         dispatch(generalActions.toggleListIsOpen(name))
     }
+    function toggleTaskImportant(name, list) {
+        dispatch(generalActions.toggleTaskImportant({name, list}))
+    }
     return {
         addTask,
         addList,
         toggleListIsOpen,
+        toggleTaskImportant,
     }
 }
