@@ -8,22 +8,27 @@ import { useGeneral } from '../bus/general';
 
 export const useToday = () => {
     const [unsortedIsOpen, toggleUnsortedIsOpen] = useState(true);
+    const [completedIsOpen, toggleCompletedIsOpen] = useState(true);
     const tasks = useSelector(state => state.general.tasks);
     const lists = useSelector(state => state.general.lists);
     const modalIsActive = useSelector(state => state.modal);
     const { toggleNewTaskModalActive, toggleNewListModalActive } = useModal();
-    const { addTask, addList, toggleListIsOpen, toggleTaskImportant } = useGeneral();
+    const { addTask, addList, toggleUncompletedListIsOpen, toggleCompletedListIsOpen, toggleTaskImportant, toggleIsCompleted } = useGeneral();
     return {
         tasks,
         lists,
         modalIsActive,
         unsortedIsOpen, 
+        completedIsOpen,
         toggleUnsortedIsOpen,
+        toggleCompletedIsOpen,
         toggleNewTaskModalActive,
         toggleNewListModalActive,
         addTask,
         addList,
-        toggleListIsOpen,
+        toggleUncompletedListIsOpen,
+        toggleCompletedListIsOpen,
         toggleTaskImportant,
+        toggleIsCompleted,
     }
 }

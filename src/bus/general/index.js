@@ -12,16 +12,24 @@ export const useGeneral = () => {
     function addList(list) {
         dispatch(generalActions.addList(list))
     }
-    function toggleListIsOpen(name) {
-        dispatch(generalActions.toggleListIsOpen(name))
+    function toggleUncompletedListIsOpen(name) {
+        dispatch(generalActions.toggleUncompletedListIsOpen(name))
+    }
+    function toggleCompletedListIsOpen(name) {
+        dispatch(generalActions.toggleCompletedListIsOpen(name))
     }
     function toggleTaskImportant(name, list) {
         dispatch(generalActions.toggleTaskImportant({name, list}))
     }
+    function toggleIsCompleted(name, list) {
+        dispatch(generalActions.toggleIsCompleted({name, list}))
+    }
     return {
         addTask,
         addList,
-        toggleListIsOpen,
+        toggleUncompletedListIsOpen,
+        toggleCompletedListIsOpen,
         toggleTaskImportant,
+        toggleIsCompleted,
     }
 }

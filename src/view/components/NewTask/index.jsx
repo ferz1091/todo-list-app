@@ -14,7 +14,7 @@ export const NewTask = (props) => {
     const validationSchema = Yup.object().shape({
         name: Yup.string()
         .min(2, 'Too short!')
-        .max(15, 'Too long!')
+        .max(10, 'Too long!')
         .required('Required!')
         .when('list', {
             is: (list) => !list,
@@ -64,7 +64,7 @@ export const NewTask = (props) => {
         },
         validationSchema,
         onSubmit: values => {
-            props.addTask({ ...values, created: new Date().toLocaleString(), important: false});
+            props.addTask({ ...values, created: new Date().toLocaleString(), important: false, isCompleted: false});
             props.toggleNewTaskModalActive(false)
         }
     })

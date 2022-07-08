@@ -28,6 +28,11 @@ margin: 0 10px 5px 10px;
 .list {
     background-color: blue;
 }
+.completed {
+    background-color: green;
+    border: 1px solid black;
+    padding-left: 5px;
+}
 button {
     position: absolute;
     bottom: 5%; right: 5%;
