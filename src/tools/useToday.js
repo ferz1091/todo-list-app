@@ -7,7 +7,8 @@ import { useModal } from '../bus/modal';
 import { useGeneral } from '../bus/general';
 
 export const useToday = () => {
-    const [unsortedIsOpen, toggleUnsortedIsOpen] = useState(true);
+    const [unsortedUncompletedIsOpen, toggleUnsortedUncompletedIsOpen] = useState(true);
+    const [unsortedCompletedIsOpen, toggleUnsortedCompletedIsOpen] = useState(true);
     const [completedIsOpen, toggleCompletedIsOpen] = useState(true);
     const tasks = useSelector(state => state.general.tasks);
     const lists = useSelector(state => state.general.lists);
@@ -18,9 +19,11 @@ export const useToday = () => {
         tasks,
         lists,
         modalIsActive,
-        unsortedIsOpen, 
+        unsortedUncompletedIsOpen,
+        unsortedCompletedIsOpen, 
         completedIsOpen,
-        toggleUnsortedIsOpen,
+        toggleUnsortedUncompletedIsOpen,
+        toggleUnsortedCompletedIsOpen,
         toggleCompletedIsOpen,
         toggleNewTaskModalActive,
         toggleNewListModalActive,

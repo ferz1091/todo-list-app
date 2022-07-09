@@ -16,9 +16,9 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <AppWrapper>
+      <AppWrapper className='AppWrapper'>
         <Header />
-        <ContentWrapper>
+        <ContentWrapper className='ContentWrapper'>
           <Navbar />
           <Routes>
             <Route 

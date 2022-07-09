@@ -8,29 +8,16 @@ import completeHoverIcon from '../../../assets/icons/not-completed-hover.png';
 import completeActiveIcon from '../../../assets/icons/not-completed-active.png';
 
 export const UnsortedWrapper = styled.div`
-.task {
+.task-body {
     position: relative;
     display: flex;
+    border-bottom: 1px solid black;
     .prop-name {
         padding-left: 5px;
     }
     .prop-time {
         position: absolute;
         right: 30px;
-    }
-    .desc-prop, .desc-prop-hidden {
-        display: block;
-        width: 100%;
-        position: absolute;
-        top: 100%;
-        z-index: 999;
-        background-color: white;
-        padding-left: 5px;
-        box-sizing: border-box;
-        border-bottom: 1px solid black;
-    }
-    .desc-prop-hidden {
-        display: none;
     }
     .important-btn {
         padding-left: 30px;

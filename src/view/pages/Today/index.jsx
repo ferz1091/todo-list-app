@@ -14,9 +14,11 @@ export const Today = () => {
     const { tasks,
             lists,
             modalIsActive,
-            unsortedIsOpen,
+            unsortedUncompletedIsOpen,
+            unsortedCompletedIsOpen,
             completedIsOpen,
-            toggleUnsortedIsOpen,
+            toggleUnsortedUncompletedIsOpen,
+            toggleUnsortedCompletedIsOpen,
             toggleCompletedIsOpen,
             toggleNewTaskModalActive,
             toggleNewListModalActive,
@@ -27,39 +29,26 @@ export const Today = () => {
             toggleTaskImportant,
             toggleIsCompleted } = useToday();
     const { sortByDeadline, sortCompletedFromLists } = useSortToday();
-    console.log(completedIsOpen);
 
     return (
-        <TodayWrapper className='Today'>
+        <TodayWrapper className='Today' unsortedUncompletedIsOpen={unsortedUncompletedIsOpen}>
             {lists.length === 0 ? null : lists.map((list) =>
                 [...list.tasks.filter(task => !task.isCompleted && task.date === new Date().toISOString().slice(0, 10))].sort((a, b) => {
                     return sortByDeadline(a, b);
                 })
                     .map((task, index, tasks) =>
-                        <React.Fragment key={index}>
-                            {index === 0 ?
-                                <div
-                                    className='list'
-                                    onClick={() => toggleUncompletedListIsOpen(list.name)}
-                                >
-                                    {list.name}
-                                </div>
-                                :
-                                null
-                            }
-                            {list.isOpen.uncompleted ?
-                                <List
-                                    index={index}
-                                    task={task}
-                                    tasks={tasks}
-                                    toggleTaskImportant={toggleTaskImportant}
-                                    toggleIsCompleted={toggleIsCompleted}
-                                />
-                                :
-                                null
-                            }
-                        </React.Fragment>
-                    ))
+                        <List 
+                            key = {index}
+                            index = {index}
+                            list = {list}
+                            task = {task}
+                            tasks = {tasks} 
+                            toggleTaskImportant = {toggleTaskImportant}
+                            toggleIsCompleted = {toggleIsCompleted}
+                            toggleUncompletedListIsOpen = {toggleUncompletedListIsOpen}
+                        />
+                    )
+                )
             }
             {tasks.filter(task => task.date === new Date().toISOString().slice(0, 10)).length === 0
                 && lists.every(list => list.tasks.filter(task => task.date === new Date().toISOString().slice(0, 10)).length === 0) ?
@@ -71,29 +60,17 @@ export const Today = () => {
                     return sortByDeadline(a, b);
                 })
                     .map((task, index, tasks) =>
-                        <React.Fragment key={index}>
-                            {index === 0 ?
-                                <div
-                                    className='unsorted'
-                                    onClick={() => toggleUnsortedIsOpen(!unsortedIsOpen)}
-                                >
-                                    Unsorted
-                                </div>
-                                :
-                                null
-                            }
-                            {unsortedIsOpen ?
-                                <Unsorted
-                                    index={index}
-                                    task={task}
-                                    tasks={tasks}
-                                    toggleTaskImportant={toggleTaskImportant}
-                                    toggleIsCompleted={toggleIsCompleted}
-                                />
-                                :
-                                null
-                            }
-                        </React.Fragment>)
+                        <Unsorted
+                            key = {index}
+                            index={index}
+                            task={task}
+                            tasks={tasks}
+                            toggleTaskImportant={toggleTaskImportant}
+                            toggleIsCompleted={toggleIsCompleted}
+                            unsortedUncompletedIsOpen = {unsortedUncompletedIsOpen}
+                            toggleUnsortedUncompletedIsOpen = {toggleUnsortedUncompletedIsOpen}
+                        />
+                    )
             }
             {tasks.filter(task => task.isCompleted && task.date === new Date().toISOString().slice(0, 10)).length !== 0
                 || lists.filter(list => list.tasks.some(task => task.isCompleted && task.date === new Date().toISOString().slice(0, 10))).length !== 0
@@ -101,6 +78,7 @@ export const Today = () => {
                 <React.Fragment>
                     <div onClick={() => toggleCompletedIsOpen(!completedIsOpen)} className='completed'>
                         Completed
+                        <span className={completedIsOpen ? 'dropIcon' : 'upIcon'}></span>
                     </div>
                     {completedIsOpen ? 
                     lists.map(list => list.tasks.filter(task => task.isCompleted && task.date === new Date().toISOString().slice(0, 10))
@@ -108,40 +86,27 @@ export const Today = () => {
                             return sortCompletedFromLists(a, b)
                         })
                         .map((task, index) =>
-                            <React.Fragment key = {index}>
-                                {
-                                    index === 0 ?
-                                        <div
-                                            className='list'
-                                            onClick={() => toggleCompletedListIsOpen(list.name)}
-                                        >
-                                            {list.name}
-                                        </div>
-                                        :
-                                        null
-                                }
-                                { list.isOpen.completed ?
-                                    <Completed
-                                        key={index}
-                                        task={task}
-                                        toggleTaskImportant={toggleTaskImportant}
-                                        toggleIsCompleted={toggleIsCompleted}
-                                    />
-                                    :
-                                    null
-                                }
-                            </React.Fragment>
+                                <Completed
+                                    index= {index}
+                                    key={index}
+                                    task={task}
+                                    list = {list}
+                                    toggleTaskImportant={toggleTaskImportant}
+                                    toggleIsCompleted={toggleIsCompleted}
+                                    toggleCompletedListIsOpen={toggleCompletedListIsOpen}
+                                />
                         )
                     )
                      : null}
-                    {tasks.filter(task => task.isCompleted && task.date === new Date().toISOString().slice(0, 10)).length !== 0 ?
-                        <div className='unsorted'>
+                    {tasks.filter(task => task.isCompleted && task.date === new Date().toISOString().slice(0, 10)).length !== 0 && completedIsOpen ?
+                        <div onClick={() => toggleUnsortedCompletedIsOpen(!unsortedCompletedIsOpen)} className='unsorted'>
                             Unsorted
+                            <span className={unsortedCompletedIsOpen ? 'dropIcon' : 'upIcon'}></span>
                         </div> 
                         : 
                         null
                     }
-                    {completedIsOpen ?
+                    {completedIsOpen && unsortedCompletedIsOpen ?
                     tasks.filter(task => task.isCompleted && task.date === new Date().toISOString().slice(0, 10))
                         .map((task, index) =>
                             <Completed
