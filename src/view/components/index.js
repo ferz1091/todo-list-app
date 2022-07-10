@@ -5,3 +5,4 @@ export * from './NewList';
 export * from './List';
 export * from './Unsorted';
 export * from './Completed';
+export * from './ContextMenu';

@@ -51,7 +51,7 @@ margin: 0 10px 5px 10px;
     background-image: url(${dropIcon});
 }
 
-button {
+.addTaskBtn {
     position: absolute;
     bottom: 5%; right: 5%;
     width: 40px;
@@ -62,10 +62,10 @@ button {
     color: white;
     border: none;
 }
-button:hover {
+.addTaskBtn:hover {
     background-color: #0b9a33;
 }
-button:active {
+.addTaskBtn:active {
   transform: translateY(4px);
   box-shadow: 0 2px 2px #666;
 }

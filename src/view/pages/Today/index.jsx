@@ -31,7 +31,7 @@ export const Today = () => {
     const { sortByDeadline, sortCompletedFromLists } = useSortToday();
 
     return (
-        <TodayWrapper className='Today' unsortedUncompletedIsOpen={unsortedUncompletedIsOpen}>
+        <TodayWrapper className='Today'>
             {lists.length === 0 ? null : lists.map((list) =>
                 [...list.tasks.filter(task => !task.isCompleted && task.date === new Date().toISOString().slice(0, 10))].sort((a, b) => {
                     return sortByDeadline(a, b);
@@ -137,7 +137,7 @@ export const Today = () => {
                 null
             }
             {!modalIsActive.NewTask ?
-                <button onClick={() => toggleNewTaskModalActive(true)}>
+                <button className='addTaskBtn' onClick={() => toggleNewTaskModalActive(true)}>
                     +
                 </button>
                 :

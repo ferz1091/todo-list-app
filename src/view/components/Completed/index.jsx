@@ -1,3 +1,9 @@
+// Hooks
+import { useContextMenu } from '../../../tools';
+
+// Components
+import { ContextMenu } from '../';
+
 // Assets
 import importantIcon from '../../../assets/icons/important.png';
 import nonImportantIcon from '../../../assets/icons/not-important.png';
@@ -6,6 +12,8 @@ import nonImportantIcon from '../../../assets/icons/not-important.png';
 import { CompletedWrapper } from './styles';
 
 export const Completed = (props) => {
+    const { contextMenuIsOpen, toggleContextMenuIsOpen, optionBtnRef, contextMenuListener } = useContextMenu();
+
     if (props.list) {
         return (
             <>
@@ -22,17 +30,39 @@ export const Completed = (props) => {
                     null
                 }
                 {props.list.isOpen.completed ? 
-                        <CompletedWrapper className='task'>
-                            <div className='task-body'>
-                                <img className='important-btn' onClick={() => props.toggleTaskImportant(props.task.name, props.task.list)} src={props.task.important ? importantIcon : nonImportantIcon} alt='important' />
-                                <span className='prop-name'>{props.task.name}</span>
-                                <span className='prop-time'>{props.task.time}</span>
-                                <span className='options-btn'></span>
-                                <span className='complete-btn' onClick={() => props.toggleIsCompleted(props.task.name, props.task.list)}></span>
-                            </div>
-                        </CompletedWrapper>
-                        :
-                        null
+                    <CompletedWrapper className='task'>
+                        <div className='task-body'>
+                            <img 
+                                className='important-btn' 
+                                onClick={() => props.toggleTaskImportant(props.task.name, props.task.list)} 
+                                src={props.task.important ? importantIcon : nonImportantIcon} 
+                                alt='important' 
+                            />
+                            <span className='prop-name'>
+                                {props.task.name}
+                            </span>
+                            <span className='prop-time'>
+                                {props.task.time}
+                            </span>
+                            <span
+                                className='options-btn'
+                                ref={optionBtnRef}
+                                onClick={() => {
+                                    toggleContextMenuIsOpen(true);
+                                    document.addEventListener('click', contextMenuListener)
+                                    }
+                                }
+                            >
+                            </span>
+                            <span 
+                                className='complete-btn' 
+                                onClick={() => props.toggleIsCompleted(props.task.name, props.task.list)}>
+                            </span>
+                            {contextMenuIsOpen ? <ContextMenu {...props.task} /> : null}
+                        </div>
+                    </CompletedWrapper>
+                    :
+                    null
                 }
             </>
         )
@@ -40,11 +70,33 @@ export const Completed = (props) => {
         return (
             <CompletedWrapper className='task'>
                 <div className='task-body'>
-                    <img className='important-btn' onClick={() => props.toggleTaskImportant(props.task.name, props.task.list)} src={props.task.important ? importantIcon : nonImportantIcon} alt='important' />
-                    <span className='prop-name'>{props.task.name}</span>
-                    <span className='prop-time'>{props.task.time}</span>
-                    <span className='options-btn'></span>
-                    <span className='complete-btn' onClick={() => props.toggleIsCompleted(props.task.name, props.task.list)}></span>
+                    <img 
+                        className='important-btn' 
+                        onClick={() => props.toggleTaskImportant(props.task.name, props.task.list)} 
+                        src={props.task.important ? importantIcon : nonImportantIcon} 
+                        alt='important' 
+                    />
+                    <span className='prop-name'>
+                        {props.task.name}
+                    </span>
+                    <span className='prop-time'>
+                        {props.task.time}
+                    </span>
+                    <span
+                        className='options-btn'
+                        ref={optionBtnRef}
+                        onClick={() => {
+                            toggleContextMenuIsOpen(true);
+                            document.addEventListener('click', contextMenuListener)
+                            }
+                        }
+                    >
+                    </span>
+                    <span 
+                        className='complete-btn' 
+                        onClick={() => props.toggleIsCompleted(props.task.name, props.task.list)}>
+                    </span>
+                    {contextMenuIsOpen ? <ContextMenu {...props.task} /> : null}
                 </div>
             </CompletedWrapper>
         )
