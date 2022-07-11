@@ -21,6 +21,7 @@ background-color: white;
 border: 1px solid black;
 div {
     padding: 5px 0;
+    cursor: pointer;
 }
 .option {
     padding-left: 30px;

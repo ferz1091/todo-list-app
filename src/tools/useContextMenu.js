@@ -1,20 +1,15 @@
-// Core
-import { useState, useRef } from 'react';
+// Bus
+import { useGeneral } from '../bus/general';
+import { useModal } from '../bus/modal';
 
 export const useContextMenu = () => {
-    const [contextMenuIsOpen, toggleContextMenuIsOpen] = useState(false);
-    const optionBtnRef = useRef();
-    function contextMenuListener(e) {
-        if (e.path[0] !== optionBtnRef.current) {
-            toggleContextMenuIsOpen(false);
-            document.removeEventListener('click', contextMenuListener)
-        }
-    }
+    const {toggleTaskImportant, toggleIsCompleted} = useGeneral();
+    const {toggleExactTimeModalActive, setCurrentTask} = useModal();
 
     return {
-        contextMenuIsOpen,
-        toggleContextMenuIsOpen,
-        optionBtnRef,
-        contextMenuListener,
+        toggleTaskImportant,
+        toggleIsCompleted,
+        toggleExactTimeModalActive,
+        setCurrentTask,
     }
 }

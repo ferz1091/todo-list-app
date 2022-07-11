@@ -1,18 +1,22 @@
+// Hooks
+import { useContextMenu } from '../../../tools/useContextMenu';
+
 // Styles
 import { ContextMenuWrapper } from './styles';
 
 export const ContextMenu = (props) => {
-    
+    const {toggleTaskImportant, toggleIsCompleted, toggleExactTimeModalActive, setCurrentTask} = useContextMenu();
+
     return (
         <ContextMenuWrapper className='ContextMenu' props={props.important}>
-            <div className='important'>
+            <div className='important' onClick={() => toggleTaskImportant(props.name, props.list)}>
                 <span className={props.important ? 'important-icon' : 'not-important-icon'}>
                 </span>
                 <span className='option'>
                     {props.important ? <>Remove importance</> : <>Mark as important</>}
                 </span>
             </div>
-            <div className='complete'>
+            <div className='complete' onClick={() => toggleIsCompleted(props.name, props.list)}>
                 <span className={props.isCompleted ? 'completed-icon' : 'not-completed-icon'}>
                 </span>
                 <span className='option'>
@@ -29,7 +33,7 @@ export const ContextMenu = (props) => {
                             </span>
                         </div>
                         :
-                        <div className='time'>
+                        <div className='time' onClick={() => {toggleExactTimeModalActive(true); setCurrentTask(props)}}>
                             <span className='clock-icon'></span>
                             <span className='option'>
                                 Schedule the exact time

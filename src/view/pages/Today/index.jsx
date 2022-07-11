@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Components
-import { NewTask, NewList, List, Unsorted, Completed } from '../../components';
+import { NewTask, NewList, List, Unsorted, Completed, ExactTime } from '../../components';
 
 // Hooks
 import { useToday, useSortToday } from '../../../tools';
@@ -22,12 +22,15 @@ export const Today = () => {
             toggleCompletedIsOpen,
             toggleNewTaskModalActive,
             toggleNewListModalActive,
+            toggleExactTimeModalActive,
             addTask,
             addList,
             toggleUncompletedListIsOpen,
             toggleCompletedListIsOpen,
             toggleTaskImportant,
-            toggleIsCompleted } = useToday();
+            toggleIsCompleted,
+            resetCurrentTask,
+            rescheduleExactTime } = useToday();
     const { sortByDeadline, sortCompletedFromLists } = useSortToday();
 
     return (
@@ -135,6 +138,9 @@ export const Today = () => {
                 />
                 :
                 null
+            }
+            {modalIsActive.ExactTime ?
+                <ExactTime task={modalIsActive.currentTask} rescheduleExactTime={rescheduleExactTime} toggleExactTimeModalActive={toggleExactTimeModalActive} resetCurrentTask={resetCurrentTask}/> : null
             }
             {!modalIsActive.NewTask ?
                 <button className='addTaskBtn' onClick={() => toggleNewTaskModalActive(true)}>

@@ -24,6 +24,9 @@ export const useGeneral = () => {
     function toggleIsCompleted(name, list) {
         dispatch(generalActions.toggleIsCompleted({name, list}))
     }
+    function rescheduleExactTime(task) {
+        dispatch(generalActions.rescheduleExactTime(task))
+    }
     return {
         addTask,
         addList,
@@ -31,5 +34,6 @@ export const useGeneral = () => {
         toggleCompletedListIsOpen,
         toggleTaskImportant,
         toggleIsCompleted,
+        rescheduleExactTime,
     }
 }

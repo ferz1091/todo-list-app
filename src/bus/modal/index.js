@@ -12,8 +12,20 @@ export const useModal = () => {
     function toggleNewListModalActive(isActive) {
         dispatch(modalActions.toggleNewListModalActive(isActive))
     }
+    function toggleExactTimeModalActive(isActive) {
+        dispatch(modalActions.toggleExactTimeModalActive(isActive))
+    }
+    function setCurrentTask(task) {
+        dispatch(modalActions.setCurrentTask(task))
+    }
+    function resetCurrentTask() {
+        dispatch(modalActions.resetCurrentTask())
+    }
     return {
         toggleNewTaskModalActive,
         toggleNewListModalActive,
+        toggleExactTimeModalActive,
+        setCurrentTask,
+        resetCurrentTask,
     }
 }

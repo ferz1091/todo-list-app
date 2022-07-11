@@ -10,3 +10,23 @@ export const toggleNewListModalActive = (state, action) => {
         NewList: action.payload,
     }
 }
+export const toggleExactTimeModalActive = (state, action) => {
+    return {
+        ...state,
+        ExactTime: action.payload,
+    }
+}
+
+export const setCurrentTask = (state, action) => {
+    return {
+        ...state,
+        currentTask: action.payload,
+    }
+}
+
+export const resetCurrentTask = (state, action) => {
+    return {
+        ...state,
+        currentTask: null,
+    }
+}

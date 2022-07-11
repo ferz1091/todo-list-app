@@ -1,5 +1,5 @@
 // Hooks
-import { useContextMenu } from '../../../tools';
+import { useContextMenuListener } from '../../../tools';
 
 // Components
 import { ContextMenu } from '../';
@@ -12,7 +12,7 @@ import nonImportantIcon from '../../../assets/icons/not-important.png';
 import { ListWrapper } from './styles';
 
 export const List = (props) => {
-    const { contextMenuIsOpen, toggleContextMenuIsOpen, optionBtnRef, contextMenuListener } = useContextMenu();
+    const { contextMenuIsOpen, toggleContextMenuIsOpen, optionBtnRef, contextMenuListener } = useContextMenuListener();
 
     return (
         <ListWrapper>

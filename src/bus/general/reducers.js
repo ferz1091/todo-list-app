@@ -163,3 +163,47 @@ export const toggleIsCompleted = (state, action) => {
         }
     }
 }
+export const rescheduleExactTime = (state, action) => {
+    if (action.payload.list) {
+        return {
+            ...state,
+            lists: state.lists.map((list) => {
+                if (list.name === action.payload.list) {
+                    return {
+                        ...list,
+                        tasks: list.tasks.map((task) => {
+                            if (task.name === action.payload.name) {
+                                return {
+                                    ...action.payload
+                                }
+                            } else {
+                                return {
+                                    ...task
+                                }
+                            }
+                        })
+                    }
+                } else {
+                    return {
+                        ...list
+                    }
+                }
+            })
+        }
+    } else {
+        return {
+            ...state,
+            tasks: state.tasks.map((task) => {
+                if (task.name === action.payload.name) {
+                    return {
+                        ...action.payload
+                    }
+                } else {
+                    return {
+                        ...task
+                    }
+                }
+            })
+        }
+    }
+}
