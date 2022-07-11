@@ -27,6 +27,9 @@ export const useGeneral = () => {
     function rescheduleExactTime(task) {
         dispatch(generalActions.rescheduleExactTime(task))
     }
+    function deleteTask(name, list) {
+        dispatch(generalActions.deleteTask({name, list}))
+    }
     return {
         addTask,
         addList,
@@ -35,5 +38,6 @@ export const useGeneral = () => {
         toggleTaskImportant,
         toggleIsCompleted,
         rescheduleExactTime,
+        deleteTask,
     }
 }

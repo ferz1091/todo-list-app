@@ -6,8 +6,10 @@ export const useHour = () => {
     const newDate = new Date(new Date(`${currentTask.date}T${currentTask.time}`).getTime() + 3600000);
     const date = `${newDate.getFullYear()}-${Math.trunc((newDate.getMonth() + 1) / 10)}${Math.round((((newDate.getMonth() + 1) / 10) - Math.trunc((newDate.getMonth() + 1) / 10)) * 10) }-${newDate.getDate()}`
     const time = newDate.toLocaleTimeString().slice(0, 5);
+    const displayDate = newDate.toDateString();
     return {
         date,
-        time
+        time,
+        displayDate,
     }
 }

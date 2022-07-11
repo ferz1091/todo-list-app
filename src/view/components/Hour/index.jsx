@@ -1,39 +1,40 @@
 // Hooks
-import { useHour } from '../../../tools/useHour';
+import { useOption, useHour } from '../../../tools';
 
 // Styles
 import { HourWrapper } from './styles';
 
-export const Hour = (props) => {
-    const {date, time} = useHour();
+export const Hour = () => {
+    const { task, rescheduleExactTime, resetCurrentTask, toggleHourModalActive } = useOption();
+    const {date, time, displayDate} = useHour();
 
     return (
         <HourWrapper 
             className='hour-modal' 
             onClick={() => { 
-                props.toggleHourModalActive(false); 
-                props.resetCurrentTask()
+                toggleHourModalActive(false); 
+                resetCurrentTask()
                 }
             }
         >
             <div className='modal'>
                 <span>
-                    {`Task "${props.task.name}" the task will be reschedule to`}
+                    {`Task "${task.name}" the task will be reschedule to`}
                 </span>
                 <span>{
-                `${time} ${date}`}
+                `${time} ${displayDate}`}
                 </span>
                 <span>
                     <button onClick={() => { 
-                        props.toggleHourModalActive(false); 
-                        props.resetCurrentTask() 
+                        toggleHourModalActive(false); 
+                        resetCurrentTask() 
                         }
                     }>
                         Decline
                     </button>
                     <button onClick={() => { 
-                        props.rescheduleExactTime({ ...props.task, date: date, time: time }); 
-                        props.resetCurrentTask() 
+                        rescheduleExactTime({ ...task, date: date, time: time }); 
+                        resetCurrentTask() 
                         }
                     }>
                         Accept

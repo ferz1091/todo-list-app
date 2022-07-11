@@ -2,14 +2,24 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
+// Hooks
+import { useOption } from '../../../tools';
+
 // Styles
 import { ExactTimeWrapper } from './styles';
 
-export const ExactTime = (props) => {
+export const ExactTime = () => {
+    const {task, toggleExactTimeModalActive, resetCurrentTask, rescheduleExactTime } = useOption();
+
     const validationSchema = Yup.object().shape({
         time: Yup.string()
             .when('date', {
-                is: (date) => String(date).slice(0, 15) === String(new Date()).slice(0, 15),
+                is: (date) => date && String(date).slice(0, 15) === String(new Date()).slice(0, 15),
+                then: Yup.string()
+                    .test('time', 'Past time!', (time) => Number(time.replace(':', '') > Number(new Date().toLocaleTimeString().slice(0, 5).replace(':', ''))))
+            })
+            .when('date', {
+                is: (date) => !date && task.date === new Date().toISOString().slice(0, 10),
                 then: Yup.string()
                     .test('time', 'Past time!', (time) => Number(time.replace(':', '') > Number(new Date().toLocaleTimeString().slice(0, 5).replace(':', ''))))
             })
@@ -31,9 +41,9 @@ export const ExactTime = (props) => {
         },
         validationSchema,
         onSubmit: (values) => {
-            props.rescheduleExactTime({ ...props.task, deadline: 'exact time', isCompleted: false, time: values.time, date: values.date ? values.date : props.task.date });
-            props.toggleExactTimeModalActive(false);
-            props.resetCurrentTask();
+            rescheduleExactTime({ ...task, deadline: 'exact time', isCompleted: false, time: values.time, date: values.date ? values.date : task.date });
+            toggleExactTimeModalActive(false);
+            resetCurrentTask();
         },
     })
 
@@ -41,8 +51,8 @@ export const ExactTime = (props) => {
         <ExactTimeWrapper 
             className='ExactTime-modal' 
             onClick={() => { 
-                props.toggleExactTimeModalActive(false); 
-                props.resetCurrentTask() 
+                toggleExactTimeModalActive(false); 
+                resetCurrentTask() 
                 }
             }
         >

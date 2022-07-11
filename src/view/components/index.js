@@ -8,3 +8,6 @@ export * from './Completed';
 export * from './ContextMenu';
 export * from './ExactTime';
 export * from './Hour';
+export * from './Day';
+export * from './ChangeDate';
+export * from './DeleteTask';

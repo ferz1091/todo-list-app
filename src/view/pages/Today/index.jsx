@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Components
-import { NewTask, NewList, List, Unsorted, Completed, ExactTime, Hour } from '../../components';
+import { NewTask, NewList, List, Unsorted, Completed, ExactTime, Hour, Day, ChangeDate, DeleteTask } from '../../components';
 
 // Hooks
 import { useToday, useSortToday } from '../../../tools';
@@ -22,16 +22,12 @@ export const Today = () => {
             toggleCompletedIsOpen,
             toggleNewTaskModalActive,
             toggleNewListModalActive,
-            toggleExactTimeModalActive,
-            toggleHourModalActive,
             addTask,
             addList,
             toggleUncompletedListIsOpen,
             toggleCompletedListIsOpen,
             toggleTaskImportant,
-            toggleIsCompleted,
-            resetCurrentTask,
-            rescheduleExactTime } = useToday();
+            toggleIsCompleted } = useToday();
     const { sortByDeadline, sortCompletedFromLists } = useSortToday();
 
     return (
@@ -141,16 +137,32 @@ export const Today = () => {
                 null
             }
             {modalIsActive.ExactTime ?
-                <ExactTime task={modalIsActive.currentTask} rescheduleExactTime={rescheduleExactTime} toggleExactTimeModalActive={toggleExactTimeModalActive} resetCurrentTask={resetCurrentTask}/> 
+                <ExactTime /> 
                 : 
                 null
             }
             {modalIsActive.Hour ?
-                <Hour task={modalIsActive.currentTask} rescheduleExactTime={rescheduleExactTime} toggleHourModalActive={toggleHourModalActive} resetCurrentTask={resetCurrentTask}  /> 
+                <Hour /> 
                 : 
                 null
             }
-            {!modalIsActive.NewTask && !modalIsActive.ExactTime && !modalIsActive.Hour && !modalIsActive.NewList ?
+            {modalIsActive.Day ?
+                <Day />
+                :
+                null
+            }
+            {modalIsActive.changeDate ?
+                <ChangeDate />
+                :
+                null
+            }
+            {modalIsActive.deleteTask ?
+                <DeleteTask />
+                :
+                null
+            }
+            {!modalIsActive.NewTask && !modalIsActive.ExactTime && !modalIsActive.Hour && !modalIsActive.NewList
+                && !modalIsActive.Day && !modalIsActive.changeDate && !modalIsActive.deleteTask ?
                 <button className='addTaskBtn' onClick={() => toggleNewTaskModalActive(true)}>
                     +
                 </button>

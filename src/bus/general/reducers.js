@@ -207,3 +207,27 @@ export const rescheduleExactTime = (state, action) => {
         }
     }
 }
+export const deleteTask = (state, action) => {
+    if (action.payload.list) {
+        return {
+            ...state,
+            lists: state.lists.map((list) => {
+                if (list.name === action.payload.list) {
+                    return {
+                        ...list,
+                        tasks: list.tasks.filter((task) => task.name !== action.payload.name)
+                    }
+                } else {
+                    return {
+                        ...list
+                    }
+                }
+            })
+        }
+    } else {
+        return {
+            ...state,
+            tasks: state.tasks.filter((task) => task.name !== action.payload.name)
+        }
+    }
+}

@@ -22,6 +22,24 @@ export const toggleHourModalActive = (state, action) => {
         Hour: action.payload,
     }
 }
+export const toggleDayModalActive = (state, action) => {
+    return {
+        ...state,
+        Day: action.payload,
+    }
+}
+export const toggleChangeDateModalActive = (state, action) => {
+    return {
+        ...state,
+        changeDate: action.payload,
+    }
+}
+export const toggleDeleteTaskModalActive = (state, action) => {
+    return {
+        ...state,
+        deleteTask: action.payload,
+    }
+}
 export const setCurrentTask = (state, action) => {
     return {
         ...state,

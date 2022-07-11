@@ -1,7 +1,7 @@
 // Core
 import styled from 'styled-components';
 
-export const NewTaskWrapper = styled.div`
+export const ChangeDateWrapper = styled.div`
 position: fixed;
 top: 0; left: 0;
 width: 100vw;
@@ -36,7 +36,7 @@ background-color: rgba(50,50,50, 0.5);
         .error {
             color: red;
         }
-        input, select {
+        input {
             border-radius: 5px;
             box-sizing: border-box;
             padding: 5px 0;

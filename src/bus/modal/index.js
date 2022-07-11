@@ -18,6 +18,15 @@ export const useModal = () => {
     function toggleHourModalActive(isActive) {
         dispatch(modalActions.toggleHourModalActive(isActive))
     }
+    function toggleDayModalActive(isActive) {
+        dispatch(modalActions.toggleDayModalActive(isActive))
+    }
+    function toggleChangeDateModalActive(isActive) {
+        dispatch(modalActions.toggleChangeDateModalActive(isActive))
+    }
+    function toggleDeleteTaskModalActive(isActive) {
+        dispatch(modalActions.toggleDeleteTaskModalActive(isActive))
+    }
     function setCurrentTask(task) {
         dispatch(modalActions.setCurrentTask(task))
     }
@@ -31,5 +40,8 @@ export const useModal = () => {
         toggleHourModalActive,
         setCurrentTask,
         resetCurrentTask,
+        toggleDayModalActive,
+        toggleChangeDateModalActive,
+        toggleDeleteTaskModalActive,
     }
 }
