@@ -7,3 +7,4 @@ export * from './Unsorted';
 export * from './Completed';
 export * from './ContextMenu';
 export * from './ExactTime';
+export * from './Hour';

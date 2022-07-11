@@ -13,7 +13,7 @@ export const useToday = () => {
     const tasks = useSelector(state => state.general.tasks);
     const lists = useSelector(state => state.general.lists);
     const modalIsActive = useSelector(state => state.modal);
-    const { toggleNewTaskModalActive, toggleNewListModalActive, toggleExactTimeModalActive, resetCurrentTask } = useModal();
+    const { toggleNewTaskModalActive, toggleNewListModalActive, toggleExactTimeModalActive, toggleHourModalActive, resetCurrentTask } = useModal();
     const { addTask, addList, toggleUncompletedListIsOpen, toggleCompletedListIsOpen, toggleTaskImportant, toggleIsCompleted, rescheduleExactTime } = useGeneral();
     return {
         tasks,
@@ -36,5 +36,6 @@ export const useToday = () => {
         toggleIsCompleted,
         resetCurrentTask,
         rescheduleExactTime,
+        toggleHourModalActive,
     }
 }

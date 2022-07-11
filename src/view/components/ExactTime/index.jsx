@@ -33,6 +33,7 @@ export const ExactTime = (props) => {
         onSubmit: (values) => {
             props.rescheduleExactTime({ ...props.task, deadline: 'exact time', isCompleted: false, time: values.time, date: values.date ? values.date : props.task.date });
             props.toggleExactTimeModalActive(false);
+            props.resetCurrentTask();
         },
     })
 

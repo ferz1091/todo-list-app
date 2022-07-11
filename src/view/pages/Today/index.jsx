@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Components
-import { NewTask, NewList, List, Unsorted, Completed, ExactTime } from '../../components';
+import { NewTask, NewList, List, Unsorted, Completed, ExactTime, Hour } from '../../components';
 
 // Hooks
 import { useToday, useSortToday } from '../../../tools';
@@ -23,6 +23,7 @@ export const Today = () => {
             toggleNewTaskModalActive,
             toggleNewListModalActive,
             toggleExactTimeModalActive,
+            toggleHourModalActive,
             addTask,
             addList,
             toggleUncompletedListIsOpen,
@@ -140,9 +141,16 @@ export const Today = () => {
                 null
             }
             {modalIsActive.ExactTime ?
-                <ExactTime task={modalIsActive.currentTask} rescheduleExactTime={rescheduleExactTime} toggleExactTimeModalActive={toggleExactTimeModalActive} resetCurrentTask={resetCurrentTask}/> : null
+                <ExactTime task={modalIsActive.currentTask} rescheduleExactTime={rescheduleExactTime} toggleExactTimeModalActive={toggleExactTimeModalActive} resetCurrentTask={resetCurrentTask}/> 
+                : 
+                null
             }
-            {!modalIsActive.NewTask ?
+            {modalIsActive.Hour ?
+                <Hour task={modalIsActive.currentTask} rescheduleExactTime={rescheduleExactTime} toggleHourModalActive={toggleHourModalActive} resetCurrentTask={resetCurrentTask}  /> 
+                : 
+                null
+            }
+            {!modalIsActive.NewTask && !modalIsActive.ExactTime && !modalIsActive.Hour && !modalIsActive.NewList ?
                 <button className='addTaskBtn' onClick={() => toggleNewTaskModalActive(true)}>
                     +
                 </button>

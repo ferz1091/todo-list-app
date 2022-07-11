@@ -5,7 +5,7 @@ import { useContextMenu } from '../../../tools/useContextMenu';
 import { ContextMenuWrapper } from './styles';
 
 export const ContextMenu = (props) => {
-    const {toggleTaskImportant, toggleIsCompleted, toggleExactTimeModalActive, setCurrentTask} = useContextMenu();
+    const { toggleTaskImportant, toggleIsCompleted, toggleExactTimeModalActive, toggleHourModalActive, setCurrentTask} = useContextMenu();
 
     return (
         <ContextMenuWrapper className='ContextMenu' props={props.important}>
@@ -26,7 +26,7 @@ export const ContextMenu = (props) => {
             {props.deadline !== 'not planned' ?
                 <>
                     {props.time ?
-                        <div className='hour'>
+                        <div className='hour' onClick={() => { toggleHourModalActive(true); setCurrentTask(props) }}>
                             <span className='hour-icon'></span>
                             <span className='option'>
                                 Reschedule by an hour

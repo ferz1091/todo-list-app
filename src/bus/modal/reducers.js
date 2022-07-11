@@ -16,14 +16,18 @@ export const toggleExactTimeModalActive = (state, action) => {
         ExactTime: action.payload,
     }
 }
-
+export const toggleHourModalActive = (state, action) => {
+    return {
+        ...state,
+        Hour: action.payload,
+    }
+}
 export const setCurrentTask = (state, action) => {
     return {
         ...state,
         currentTask: action.payload,
     }
 }
-
 export const resetCurrentTask = (state, action) => {
     return {
         ...state,

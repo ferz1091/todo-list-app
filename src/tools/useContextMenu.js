@@ -4,12 +4,13 @@ import { useModal } from '../bus/modal';
 
 export const useContextMenu = () => {
     const {toggleTaskImportant, toggleIsCompleted} = useGeneral();
-    const {toggleExactTimeModalActive, setCurrentTask} = useModal();
+    const { toggleExactTimeModalActive, toggleHourModalActive, setCurrentTask} = useModal();
 
     return {
         toggleTaskImportant,
         toggleIsCompleted,
         toggleExactTimeModalActive,
+        toggleHourModalActive,
         setCurrentTask,
     }
 }
