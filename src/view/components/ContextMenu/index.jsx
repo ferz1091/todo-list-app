@@ -5,45 +5,55 @@ import { useContextMenu } from '../../../tools';
 import { ContextMenuWrapper } from './styles';
 
 export const ContextMenu = (props) => {
-    const { toggleTaskImportant, 
+    const { lists,
+            toggleTaskImportant, 
             toggleIsCompleted, 
             toggleExactTimeModalActive, 
             toggleHourModalActive, 
             toggleDayModalActive, 
             setCurrentTask, 
             toggleChangeDateModalActive, 
-            toggleDeleteTaskModalActive } = useContextMenu();
+            toggleDeleteTaskModalActive,
+            toggleMoveTaskModalActive,
+            moveTaskIsOpen,
+            toggleMoveTaskIsOpen,
+            toggleNewListModalActive,
+            addTask,
+            deleteTask } = useContextMenu();
 
     return (
-        <ContextMenuWrapper className='ContextMenu' props={props.important}>
-            <div className='important' onClick={() => toggleTaskImportant(props.name, props.list)}>
-                <span className={props.important ? 'important-icon' : 'not-important-icon'}>
+        <ContextMenuWrapper className='ContextMenu' props={props.task.important}>
+            <div 
+                className='important' 
+                onClick={() => toggleTaskImportant(props.task.name, props.task.list)}
+            >
+                <span className={props.task.important ? 'important-icon' : 'not-important-icon'}>
                 </span>
                 <span className='option'>
-                    {props.important ? <>Remove importance</> : <>Mark as important</>}
+                    {props.task.important ? <>Remove importance</> : <>Mark as important</>}
                 </span>
             </div>
             <div 
                 className='complete' 
-                onClick={() => toggleIsCompleted(props.name, props.list)}
+                onClick={() => toggleIsCompleted(props.task.name, props.task.list)}
             >
-                <span className={props.isCompleted ? 'completed-icon' : 'not-completed-icon'}>
+                <span className={props.task.isCompleted ? 'completed-icon' : 'not-completed-icon'}>
                 </span>
                 <span className='option'>
-                    {props.isCompleted ? <>Mark as incomplete</> : <>Mark as complete</>}
+                    {props.task.isCompleted ? <>Mark as incomplete</> : <>Mark as complete</>}
                 </span>
             </div>
-            {props.deadline !== 'not planned' ?
+            {props.task.deadline !== 'not planned' ?
                 <>
-                    {!props.isCompleted ?
+                    {!props.task.isCompleted ?
                         <>
                             {
-                                props.time ?
+                                props.task.time ?
                                     <div 
                                         className='hour' 
                                         onClick={() => { 
                                             toggleHourModalActive(true); 
-                                            setCurrentTask(props) 
+                                            setCurrentTask(props.task) 
                                             }
                                         }
                                     >
@@ -57,7 +67,7 @@ export const ContextMenu = (props) => {
                                         className='time' 
                                         onClick={() => { 
                                             toggleExactTimeModalActive(true); 
-                                            setCurrentTask(props) 
+                                            setCurrentTask(props.task) 
                                             }
                                         }
                                     >
@@ -71,7 +81,7 @@ export const ContextMenu = (props) => {
                                 className='day' 
                                 onClick={() => { 
                                     toggleDayModalActive(true); 
-                                    setCurrentTask(props) 
+                                    setCurrentTask(props.task) 
                                     }
                                 }
                             >
@@ -88,7 +98,7 @@ export const ContextMenu = (props) => {
                         className='change-date' 
                         onClick={() => { 
                             toggleChangeDateModalActive(true); 
-                            setCurrentTask(props) 
+                            setCurrentTask(props.task) 
                             }
                         }
                     >
@@ -101,17 +111,75 @@ export const ContextMenu = (props) => {
                 :
                 null
             }
-            <div className='change-list'>
+            <div 
+                className='change-list' 
+                onClick={(e) => {
+                    e.stopPropagation();
+                    toggleMoveTaskIsOpen(true);
+                    }
+                } 
+                onMouseOver={() => toggleMoveTaskIsOpen(true)} 
+                onMouseOut={() => toggleMoveTaskIsOpen(false)} 
+            >
                 <span className='move-icon'></span>
                 <span className='option'>
                     Move task
                 </span>
+                <span className='drop-right-icon'></span>
+                {moveTaskIsOpen ? 
+                    <div className='change-list-subpanel'
+                        onClick={() => props.toggleContextMenuIsOpen(false)}>
+                        <div
+                            className='option-subpanel' 
+                            onClick={() => {
+                                toggleNewListModalActive(true); 
+                                setCurrentTask(props.task);
+                                }
+                            }
+                        >
+                            <span className='add-icon'></span>
+                            <span>
+                                Move to new list
+                            </span>
+                        </div>
+                        <div 
+                            onClick={() => {
+                            if (props.task.list) {
+                            addTask({...props.task, list: ''});
+                            deleteTask(props.task.name, props.task.list);
+                                    }
+                                }
+                            }
+                            className={props.task.list ? 'option-subpanel' : 'option-subpanel-disabled'}>
+                            <span className='cross-icon'></span>
+                            <span>
+                                Delete from {`"${props.task.list}"`}
+                            </span>
+                        </div>
+                        <div 
+                            onClick={() => {if (lists.filter((list) => list.name !== props.task.list).length > 0) {
+                                toggleMoveTaskModalActive(true);
+                                setCurrentTask(props.task);
+                                }
+                                }
+                            }
+                            className={lists.filter((list) => list.name !== props.task.list).length > 0 ? 'option-subpanel' : 'option-subpanel-disabled'}
+                        >
+                            <span className='moveTo-icon'></span>
+                            <span>
+                                Move to
+                            </span>
+                        </div>
+                    </div> 
+                    : 
+                    null
+                }
             </div>
             <div 
                 className='delete' 
                 onClick={() => { 
                     toggleDeleteTaskModalActive(true); 
-                    setCurrentTask(props) 
+                    setCurrentTask(props.task);
                     }
                 }
             >

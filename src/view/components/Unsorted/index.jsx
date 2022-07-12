@@ -13,7 +13,6 @@ import { UnsortedWrapper } from './styles';
 
 export const Unsorted = (props) => {
     const { contextMenuIsOpen, toggleContextMenuIsOpen, optionBtnRef, contextMenuListener } = useContextMenuListener();
-
     return (
         <UnsortedWrapper>
             {props.index === 0 ?
@@ -66,7 +65,7 @@ export const Unsorted = (props) => {
                             className='complete-btn' 
                             onClick={() => props.toggleIsCompleted(props.task.name, props.task.list)}>
                         </span>
-                        {contextMenuIsOpen ? <ContextMenu {...props.task}/> : null}
+                        {contextMenuIsOpen ? <ContextMenu toggleContextMenuIsOpen={toggleContextMenuIsOpen} task={props.task}/> : null}
                     </div>
                 </div>
                 : 

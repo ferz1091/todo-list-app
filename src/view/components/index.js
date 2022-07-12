@@ -11,3 +11,4 @@ export * from './Hour';
 export * from './Day';
 export * from './ChangeDate';
 export * from './DeleteTask';
+export * from './MoveTask';

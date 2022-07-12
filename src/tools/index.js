@@ -5,3 +5,4 @@ export * from './useContextMenu';
 export * from './useOption';
 export * from './useHour';
 export * from './useDay';
+export * from './useMoveTask';

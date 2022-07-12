@@ -41,7 +41,7 @@ export const ExactTime = () => {
         },
         validationSchema,
         onSubmit: (values) => {
-            rescheduleExactTime({ ...task, deadline: 'exact time', isCompleted: false, time: values.time, date: values.date ? values.date : task.date });
+            rescheduleExactTime({ ...task, deadline: 'exact time', time: values.time, date: values.date ? values.date : task.date });
             toggleExactTimeModalActive(false);
             resetCurrentTask();
         },

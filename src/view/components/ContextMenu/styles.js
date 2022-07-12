@@ -12,6 +12,10 @@ import changeDateIcon from '../../../assets/icons/change-date.png';
 import clockIcon from '../../../assets/icons/clock.png';
 import moveIcon from '../../../assets/icons/move-task.png';
 import deleteIcon from '../../../assets/icons/delete.png';
+import dropRightIcon from '../../../assets/icons/drop-right.png';
+import addIcon from '../../../assets/icons/add.png';
+import crossIcon from '../../../assets/icons/cross.png';
+import moveToIcon from '../../../assets/icons/moveto.png';
 
 export const ContextMenuWrapper = styled.div`
 position: absolute;
@@ -27,7 +31,7 @@ div {
     padding-left: 30px;
     padding-right: 5px;
 }
-.important-icon, .not-important-icon, .completed-icon, .not-completed-icon, .hour-icon, .day-icon, .change-date-icon, .clock-icon, .move-icon, .delete-icon {
+.important-icon, .not-important-icon, .completed-icon, .not-completed-icon, .hour-icon, .day-icon, .change-date-icon, .clock-icon, .move-icon, .delete-icon, .add-icon, .cross-icon, .moveTo-icon {
     width: 20px;
     height: 20px;
     position: absolute;
@@ -63,5 +67,41 @@ div {
 }
 .delete-icon {
     background-image: url(${deleteIcon});
+}
+.add-icon {
+    background-image: url(${addIcon});
+}
+.cross-icon {
+    background-image: url(${crossIcon});
+}
+.moveTo-icon {
+    background-image: url(${moveToIcon});
+}
+.change-list {
+    position: relative;
+}
+.change-list-subpanel {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top : 0; left: 100%;
+    z-index: 999;
+    background-color: white;
+    border: 1px solid black;
+    .option-subpanel, .option-subpanel-disabled {
+        white-space: nowrap;
+        padding-left: 30px;
+        padding-right: 5px;
+    }
+    .option-subpanel-disabled {
+        opacity: 0.3;
+    }
+}
+.drop-right-icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 5px;
+    background-image: url(${dropRightIcon});
 }
 `;

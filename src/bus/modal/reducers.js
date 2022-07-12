@@ -40,6 +40,12 @@ export const toggleDeleteTaskModalActive = (state, action) => {
         deleteTask: action.payload,
     }
 }
+export const toggleMoveTaskModalActive = (state, action) => {
+    return {
+        ...state,
+        moveTask: action.payload,
+    }
+}
 export const setCurrentTask = (state, action) => {
     return {
         ...state,
