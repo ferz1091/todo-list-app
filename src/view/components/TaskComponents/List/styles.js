@@ -9,9 +9,16 @@ import completeActiveIcon from '../../../../assets/icons/not-completed-active.pn
 
 export const ListWrapper = styled.div`
 .list-body {
-    .task {
+    .task-body, .task-body-overdue {
         position: relative;
         display: flex;
+        .overdue-warning {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            color: red;
+            font-weight: bold;
+        }
         .prop-name {
             padding-left: 5px;
         }
@@ -55,6 +62,13 @@ export const ListWrapper = styled.div`
             z-index: 999;
             display: flex;
             flex-direction: column;
+        }
+    }
+    .task-body-overdue {
+        border: 1px solid red;
+        background-color: rgba(255, 0, 0, 0.1);
+        .prop-time {
+            font-weight: bold;
         }
     }
 }

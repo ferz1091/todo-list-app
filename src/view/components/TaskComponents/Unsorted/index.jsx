@@ -13,6 +13,7 @@ import { UnsortedWrapper } from './styles';
 
 export const Unsorted = (props) => {
     const { contextMenuIsOpen, toggleContextMenuIsOpen, optionBtnRef, contextMenuListener } = useContextMenuListener();
+    console.log(props);
     return (
         <UnsortedWrapper>
             {props.index === 0 ?
@@ -26,24 +27,24 @@ export const Unsorted = (props) => {
                 :
                 null
             }
-            {props.unsortedUncompletedIsOpen ? 
+            {props.unsortedUncompletedIsOpen ?
                 <div className='task'>
                     {props.index === 0 && props.task.deadline === 'deadline' ? <div className='title'>With deadline</div> : null}
                     {props.index === 0 && props.task.deadline === 'exact time' ? <div className='title'>Planned</div> : null}
-                    {props.index !== 0 && props.task.deadline === 'exact time' 
-                    && props.tasks[props.index - 1].deadline === 'deadline' ? 
+                    {props.index !== 0 && props.task.deadline === 'exact time'
+                        && props.tasks[props.index - 1].deadline === 'deadline' ?
                         <div className='title'>
                             Planned
                         </div>
-                        : 
+                        :
                         null
                     }
-                    <div className='task-body'>
-                        <img 
-                            className='important-btn' 
-                            onClick={() => props.toggleTaskImportant(props.task.name, props.task.list)} 
-                            src={props.task.important ? importantIcon : nonImportantIcon} 
-                            alt='important' 
+                    <div className={!props.task.time ? 'task-body' : Number(props.task.time.replace(':', '')) < Number(new Date().toLocaleTimeString().slice(0, 5).replace(':', '')) ? 'task-body-overdue' : 'task-body'}>
+                        <img
+                            className='important-btn'
+                            onClick={() => props.toggleTaskImportant(props.task.name, props.task.list)}
+                            src={props.task.important ? importantIcon : nonImportantIcon}
+                            alt='important'
                         />
                         <span className='prop-name'>
                             {props.task.name}
@@ -51,24 +52,34 @@ export const Unsorted = (props) => {
                         <span className='prop-time'>
                             {props.task.time}
                         </span>
-                        <span 
-                            className='options-btn' 
-                            ref={optionBtnRef} 
+                        {props.task.time ? 
+                            Number(props.task.time.replace(':', '')) < Number(new Date().toLocaleTimeString().slice(0, 5).replace(':', '')) ?
+                                <span className='overdue-warning'>
+                                    overdue
+                                </span>
+                                : 
+                                null 
+                            : 
+                            null
+                        }
+                        <span
+                            className='options-btn'
+                            ref={optionBtnRef}
                             onClick={() => {
-                                toggleContextMenuIsOpen(true); 
+                                toggleContextMenuIsOpen(true);
                                 document.addEventListener('click', contextMenuListener)
-                                }
                             }
-                        >   
+                            }
+                        >
                         </span>
-                        <span 
-                            className='complete-btn' 
+                        <span
+                            className='complete-btn'
                             onClick={() => props.toggleIsCompleted(props.task.name, props.task.list)}>
                         </span>
-                        {contextMenuIsOpen ? <ContextMenu toggleContextMenuIsOpen={toggleContextMenuIsOpen} task={props.task}/> : null}
+                        {contextMenuIsOpen ? <ContextMenu toggleContextMenuIsOpen={toggleContextMenuIsOpen} task={props.task} /> : null}
                     </div>
                 </div>
-                : 
+                :
                 null
             }
         </UnsortedWrapper>

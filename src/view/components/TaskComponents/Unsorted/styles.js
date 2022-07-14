@@ -8,10 +8,17 @@ import completeHoverIcon from '../../../../assets/icons/not-completed-hover.png'
 import completeActiveIcon from '../../../../assets/icons/not-completed-active.png';
 
 export const UnsortedWrapper = styled.div`
-.task-body {
+.task-body, .task-body-overdue {
     position: relative;
     display: flex;
     border-bottom: 1px solid black;
+    .overdue-warning {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        color: red;
+        font-weight: bold;
+    }
     .prop-name {
         padding-left: 5px;
     }
@@ -55,6 +62,13 @@ export const UnsortedWrapper = styled.div`
         z-index: 999;
         display: flex;
         flex-direction: column;
+    }
+}
+.task-body-overdue {
+    border: 1px solid red;
+    background-color: rgba(255, 0, 0, 0.1);
+    .prop-time {
+        font-weight: bold;
     }
 }
 `;

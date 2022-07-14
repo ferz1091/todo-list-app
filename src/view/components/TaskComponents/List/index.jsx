@@ -34,7 +34,7 @@ export const List = (props) => {
                     {props.index !== 0 && props.task.deadline === 'exact time' 
                     && props.tasks[props.index - 1].deadline === 'deadline' ?
                         <div className='title'>Planned</div> : null}
-                        <div className='task'>
+                    <div className={!props.task.time ? 'task-body' : Number(props.task.time.replace(':', '')) < Number(new Date().toLocaleTimeString().slice(0, 5).replace(':', '')) ? 'task-body-overdue' : 'task-body'}>
                             <img 
                                 className='important-btn' 
                                 onClick={() => props.toggleTaskImportant(props.task.name, props.task.list)} 
@@ -47,6 +47,16 @@ export const List = (props) => {
                             <span className='prop-time'>
                                 {props.task.time}
                             </span>
+                            {props.task.time ?
+                                Number(props.task.time.replace(':', '')) < Number(new Date().toLocaleTimeString().slice(0, 5).replace(':', '')) ?
+                                    <span className='overdue-warning'>
+                                        overdue
+                                    </span>
+                                    :
+                                    null
+                                :
+                                null
+                            }
                             <span
                                 className='options-btn'
                                 ref={optionBtnRef}
