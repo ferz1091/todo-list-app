@@ -1,5 +1,5 @@
 // Hooks
-import { useOption } from '../../../tools';
+import { useOption } from '../../../../tools';
 
 // Styles
 import { DeleteTaskWrapper } from './styles';

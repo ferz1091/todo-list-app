@@ -11,6 +11,10 @@ grid-gap: 5px;
 width: 100vw;
 height: 100vh;
 background-color: #dfdfdf;
+@media (max-width: 768px) {
+    grid-template-columns: 1fr 100vw 1fr;
+    grid-gap: 0px;  
+}
 `;
 
 export const ContentWrapper = styled.section`
@@ -19,4 +23,7 @@ display: grid;
 grid-template-columns: 1fr 80%;
 background-color: #dfdfdf;
 border: 1px solid black;
+@media (max-width: 768px) {
+    grid-template-columns: 1fr 70%;
+}
 `;

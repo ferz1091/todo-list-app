@@ -84,7 +84,7 @@ div {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top : 0; left: 100%;
+    top: 0; left: 100%;
     z-index: 999;
     background-color: white;
     border: 1px solid black;
@@ -103,5 +103,12 @@ div {
     height: 20px;
     right: 5px;
     background-image: url(${dropRightIcon});
+}
+@media (max-width: 768px) {
+    .change-list-subpanel {
+        top: 100%;
+        left: auto;
+        right: 0;
+    }
 }
 `;

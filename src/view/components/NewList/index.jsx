@@ -14,7 +14,7 @@ export const NewList = (props) => {
     const validationSchema = Yup.object().shape({
         name: Yup.string()
             .min(2, 'Too short!')
-            .max(12, 'Too long!')
+            .max(10, 'Too long!')
             .required('Required!')
             .test('name', 'Such a list already exists!', (name) => lists.every(list => list.name !== name))
     });

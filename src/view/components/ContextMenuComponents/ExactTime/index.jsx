@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 // Hooks
-import { useOption } from '../../../tools';
+import { useOption } from '../../../../tools';
 
 // Styles
 import { ExactTimeWrapper } from './styles';

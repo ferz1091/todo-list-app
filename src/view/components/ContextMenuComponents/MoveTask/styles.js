@@ -2,8 +2,8 @@
 import styled from 'styled-components';
 
 // Assets
-import upIcon from '../../../assets/icons/drop-up.png';
-import downIcon from '../../../assets/icons/drop-down.png';
+import upIcon from '../../../../assets/icons/drop-up.png';
+import downIcon from '../../../../assets/icons/drop-down.png';
 
 export const MoveTaskWrapper = styled.div`
 position: fixed;

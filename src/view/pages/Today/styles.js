@@ -13,6 +13,7 @@ margin: 0 10px 5px 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     border-radius: 15px;
     box-sizing: border-box;
     width: 100%;

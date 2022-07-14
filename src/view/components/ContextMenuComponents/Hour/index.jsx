@@ -1,5 +1,5 @@
 // Hooks
-import { useOption, useHour } from '../../../tools';
+import { useOption, useHour } from '../../../../tools';
 
 // Styles
 import { HourWrapper } from './styles';

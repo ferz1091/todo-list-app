@@ -33,6 +33,14 @@ const App = () => {
               path='/p'
               element={<div>planned</div>}
             />
+            <Route 
+              path='/u'
+              element={<div>Unplanned</div>}
+            />
+            <Route 
+              path='/h'
+              element={<div>History</div>}
+            />
             {lists.length !== 0 ? lists.map((list, index) => <Route key = {index} path = {`/${list.name}`} element={<div>{list.name}</div>}/>) : null}
           </Routes>
         </ContentWrapper>

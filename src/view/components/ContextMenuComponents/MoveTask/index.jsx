@@ -1,5 +1,5 @@
 // Hooks
-import { useOption, useMoveTask } from '../../../tools';
+import { useOption, useMoveTask } from '../../../../tools';
 
 // Styles
 import { MoveTaskWrapper } from './styles';
