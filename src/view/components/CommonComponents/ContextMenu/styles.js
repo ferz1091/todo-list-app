@@ -2,20 +2,20 @@
 import styled from 'styled-components';
 
 // Assets
-import importantIcon from '../../../assets/icons/important.png';
-import notImportantIcon from '../../../assets/icons/not-important.png';
-import completeIcon from '../../../assets/icons/completed.png';
-import incompleteIcon from '../../../assets/icons/incomplete.png';
-import hourIcon from '../../../assets/icons/hour.png';
-import dayIcon from '../../../assets/icons/day.png';
-import changeDateIcon from '../../../assets/icons/change-date.png';
-import clockIcon from '../../../assets/icons/clock.png';
-import moveIcon from '../../../assets/icons/move-task.png';
-import deleteIcon from '../../../assets/icons/delete.png';
-import dropRightIcon from '../../../assets/icons/drop-right.png';
-import addIcon from '../../../assets/icons/add.png';
-import crossIcon from '../../../assets/icons/cross.png';
-import moveToIcon from '../../../assets/icons/moveto.png';
+import importantIcon from '../../../../assets/icons/important.png';
+import notImportantIcon from '../../../../assets/icons/not-important.png';
+import completeIcon from '../../../../assets/icons/completed.png';
+import incompleteIcon from '../../../../assets/icons/incomplete.png';
+import hourIcon from '../../../../assets/icons/hour.png';
+import dayIcon from '../../../../assets/icons/day.png';
+import changeDateIcon from '../../../../assets/icons/change-date.png';
+import clockIcon from '../../../../assets/icons/clock.png';
+import moveIcon from '../../../../assets/icons/move-task.png';
+import deleteIcon from '../../../../assets/icons/delete.png';
+import dropRightIcon from '../../../../assets/icons/drop-right.png';
+import addIcon from '../../../../assets/icons/add.png';
+import crossIcon from '../../../../assets/icons/cross.png';
+import moveToIcon from '../../../../assets/icons/moveto.png';
 
 export const ContextMenuWrapper = styled.div`
 position: absolute;

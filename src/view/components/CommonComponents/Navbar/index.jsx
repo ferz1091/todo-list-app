@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux/es/exports';
 
 // Bus
-import { useModal } from '../../../bus/modal';
+import { useModal } from '../../../../bus/modal';
 
 // Styles
 import { NavbarWrapper } from './styles';

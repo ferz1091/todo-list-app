@@ -2,10 +2,10 @@
 import styled from 'styled-components';
 
 // Assets
-import optionsIcon from '../../../assets/icons/menu.png';
-import completeIcon from '../../../assets/icons/not-completed.png';
-import completeHoverIcon from '../../../assets/icons/not-completed-hover.png';
-import completeActiveIcon from '../../../assets/icons/not-completed-active.png';
+import optionsIcon from '../../../../assets/icons/menu.png';
+import completeIcon from '../../../../assets/icons/not-completed.png';
+import completeHoverIcon from '../../../../assets/icons/not-completed-hover.png';
+import completeActiveIcon from '../../../../assets/icons/not-completed-active.png';
 
 export const UnsortedWrapper = styled.div`
 .task-body {

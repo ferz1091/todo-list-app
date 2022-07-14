@@ -1,12 +1,12 @@
 // Hooks
-import { useContextMenuListener } from '../../../tools';
+import { useContextMenuListener } from '../../../../tools';
 
 // Components
-import { ContextMenu } from '../';
+import { ContextMenu } from '../../';
 
 // Assets
-import importantIcon from '../../../assets/icons/important.png';
-import nonImportantIcon from '../../../assets/icons/not-important.png';
+import importantIcon from '../../../../assets/icons/important.png';
+import nonImportantIcon from '../../../../assets/icons/not-important.png';
 
 // Styles
 import { ListWrapper } from './styles';

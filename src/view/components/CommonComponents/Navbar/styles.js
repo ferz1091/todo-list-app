@@ -31,6 +31,9 @@ a {
     text-align: center;
     text-decoration: none;
 }
+a:link, a:visited {
+    color: black;
+}
 .active {
     color: red;
 }

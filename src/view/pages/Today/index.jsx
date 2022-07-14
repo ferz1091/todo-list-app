@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Components
-import { NewTask, NewList, List, Unsorted, Completed, ExactTime, Hour, Day, ChangeDate, DeleteTask, MoveTask } from '../../components';
+import { List, Unsorted, Completed } from '../../components';
 
 // Hooks
 import { useToday, useSortToday } from '../../../tools';
@@ -13,23 +13,16 @@ import { TodayWrapper } from './styles';
 export const Today = () => {
     const { tasks,
             lists,
-            modalIsActive,
             unsortedUncompletedIsOpen,
             unsortedCompletedIsOpen,
             completedIsOpen,
             toggleUnsortedUncompletedIsOpen,
             toggleUnsortedCompletedIsOpen,
             toggleCompletedIsOpen,
-            toggleNewTaskModalActive,
-            toggleNewListModalActive,
-            addTask,
-            addList,
-            deleteTask,
             toggleUncompletedListIsOpen,
             toggleCompletedListIsOpen,
             toggleTaskImportant,
-            toggleIsCompleted,
-            resetCurrentTask } = useToday();
+            toggleIsCompleted } = useToday();
     const { sortByDeadline, sortCompletedFromLists } = useSortToday();
 
     return (
@@ -122,63 +115,6 @@ export const Today = () => {
                 </React.Fragment>
                 :
                 null}
-            {modalIsActive.NewTask ?
-                <NewTask
-                    addTask={addTask}
-                    toggleNewTaskModalActive={toggleNewTaskModalActive}
-                />
-                :
-                null
-            }
-            {modalIsActive.NewList ?
-                <NewList
-                    addList={addList}
-                    addTask={addTask}
-                    deleteTask={deleteTask}
-                    resetCurrentTask={resetCurrentTask}
-                    toggleNewListModalActive={toggleNewListModalActive}
-                />
-                :
-                null
-            }
-            {modalIsActive.ExactTime ?
-                <ExactTime /> 
-                : 
-                null
-            }
-            {modalIsActive.Hour ?
-                <Hour /> 
-                : 
-                null
-            }
-            {modalIsActive.Day ?
-                <Day />
-                :
-                null
-            }
-            {modalIsActive.changeDate ?
-                <ChangeDate />
-                :
-                null
-            }
-            {modalIsActive.deleteTask ?
-                <DeleteTask />
-                :
-                null
-            }
-            {modalIsActive.moveTask ?
-                <MoveTask />
-                :
-                null
-            }
-            {!modalIsActive.NewTask && !modalIsActive.ExactTime && !modalIsActive.Hour && !modalIsActive.NewList
-                && !modalIsActive.Day && !modalIsActive.changeDate && !modalIsActive.deleteTask && !modalIsActive.moveTask ?
-                <button className='addTaskBtn' onClick={() => toggleNewTaskModalActive(true)}>
-                    +
-                </button>
-                :
-                null
-            }
         </TodayWrapper>
     )
 }

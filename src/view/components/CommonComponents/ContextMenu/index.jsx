@@ -1,5 +1,5 @@
 // Hooks
-import { useContextMenu } from '../../../tools';
+import { useContextMenu } from '../../../../tools';
 
 // Styles
 import { ContextMenuWrapper } from './styles';

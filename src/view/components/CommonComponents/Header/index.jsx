@@ -1,5 +1,5 @@
 // Assets
-import Logo from '../../../assets/icons/logo.png';
+import Logo from '../../../../assets/icons/logo.png';
 
 // Styles
 import { HeaderWrapper } from './styles';

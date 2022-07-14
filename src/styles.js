@@ -23,6 +23,24 @@ display: grid;
 grid-template-columns: 1fr 80%;
 background-color: #dfdfdf;
 border: 1px solid black;
+.add-task-btn {
+    position: absolute;
+    bottom: 10%; right: 10%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 30px;
+    background-color: #0ed145;
+    color: white;
+    border: none;
+}
+.add-task-btn:hover {
+    background-color: #0b9a33;
+}
+.add-task-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 2px #666;
+}
 @media (max-width: 768px) {
     grid-template-columns: 1fr 70%;
 }

@@ -36,13 +36,13 @@ export const NewTask = (props) => {
             .when('deadline', {
                 is: 'deadline',
                 then: Yup.date()
-                    .min(new Date(new Date() - 86400000), 'Wrong!')
+                    .min(new Date(new Date() - 86400000), 'Past time')
                     .required('Required')
         })
         .when('deadline', {
             is: 'exact time',
             then: Yup.date()
-                .min(new Date(new Date() - 86400000), 'Wrong!')
+                .min(new Date(new Date() - 86400000), 'Past time')
                 .required('Required')
         }),
         time: Yup.string()
@@ -50,7 +50,13 @@ export const NewTask = (props) => {
                 is: 'exact time',
                 then: Yup.string()
                     .required('Required')
-        })
+                }
+            )
+            .when('date', {
+                is: (date) => date && String(date).slice(0, 15) === String(new Date()).slice(0, 15),
+                then: Yup.string()
+                    .test('time', 'Past time!', (time) => time ? Number(time.replace(':', '') > Number(new Date().toLocaleTimeString().slice(0, 5).replace(':', ''))) : true)
+            })
     })
 
     const formik = useFormik({

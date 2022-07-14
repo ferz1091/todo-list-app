@@ -51,23 +51,4 @@ margin: 0 10px 5px 10px;
 .upIcon {
     background-image: url(${dropIcon});
 }
-
-.addTaskBtn {
-    position: absolute;
-    bottom: 5%; right: 5%;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    font-size: 30px;
-    background-color: #0ed145;
-    color: white;
-    border: none;
-}
-.addTaskBtn:hover {
-    background-color: #0b9a33;
-}
-.addTaskBtn:active {
-  transform: translateY(4px);
-  box-shadow: 0 2px 2px #666;
-}
 `;

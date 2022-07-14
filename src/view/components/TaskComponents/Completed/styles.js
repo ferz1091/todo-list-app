@@ -2,9 +2,9 @@
 import styled from 'styled-components';
 
 // Assets
-import optionsIcon from '../../../assets/icons/menu.png';
-import completeIcon from '../../../assets/icons/completed.png';
-import completeHoverIcon from '../../../assets/icons/completed-hover.png';
+import optionsIcon from '../../../../assets/icons/menu.png';
+import completeIcon from '../../../../assets/icons/completed.png';
+import completeHoverIcon from '../../../../assets/icons/completed-hover.png';
 
 export const CompletedWrapper = styled.div`
 .task-body {

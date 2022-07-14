@@ -6,3 +6,4 @@ export * from './useOption';
 export * from './useHour';
 export * from './useDay';
 export * from './useMoveTask';
+export * from './useModalElement';
