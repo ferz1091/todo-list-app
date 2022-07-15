@@ -15,8 +15,8 @@ export const useTasks = () => {
     const tasks = useSelector(state => state.general.tasks);
     const lists = useSelector(state => state.general.lists);
     const { toggleUncompletedListIsOpen, toggleCompletedListIsOpen, toggleTaskImportant, toggleIsCompleted } = useGeneral();
-    const { sortByDeadline, sortCompletedFromLists, sortUnplanned } = useSortTasks();
-    
+    const { sortByDeadline, sortCompletedFromLists, sortUnplanned, sortPlanned } = useSortTasks();
+
     return {
         tasks,
         lists,
@@ -33,5 +33,6 @@ export const useTasks = () => {
         sortByDeadline,
         sortCompletedFromLists,
         sortUnplanned,
+        sortPlanned,
     }
 }

@@ -29,7 +29,7 @@ export const MoveTask = () => {
                     : 
                     null
                 }
-                {lists.filter((lits) => lists.name !== task.list)
+                {lists.filter((list) => list.name !== task.list)
                     .filter((item, index) => index < 10 * listIndexs.a && index >= 2 * listIndexs.b)
                     .map((list, index) => 
                         <div 
