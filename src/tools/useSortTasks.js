@@ -1,4 +1,4 @@
-export const useSortToday = () => {
+export const useSortTasks = () => {
     function sortByDeadline(a, b) {
         if (a.deadline === 'deadline' && b.deadline !== 'deadline') {
             return -1;
@@ -45,8 +45,22 @@ export const useSortToday = () => {
             return -1;
         }
     }
+    function sortUnplanned(a, b) {
+        if (a.important && !b.important) {
+            return -1;
+        } else if (!a.important && b.important) {
+            return 1;
+        } else if (new Date(`${a.created.slice(6, 10)}-${a.created.slice(3, 5)}=${a.created.slice(0, 2)}`) > new Date(`${b.created.slice(6, 10)}-${b.created.slice(3, 5)}=${b.created.slice(0, 2)}`)) {
+            return -1;
+        } else if (new Date(`${a.created.slice(6, 10)}-${a.created.slice(3, 5)}=${a.created.slice(0, 2)}`) < new Date(`${b.created.slice(6, 10)}-${b.created.slice(3, 5)}=${b.created.slice(0, 2)}`)) {
+            return 1;
+        } else {
+            return 0
+        }
+    }
     return {
         sortByDeadline,
         sortCompletedFromLists,
+        sortUnplanned,
     }
 }

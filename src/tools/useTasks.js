@@ -5,13 +5,18 @@ import { useSelector } from 'react-redux/es/exports';
 // Bus
 import { useGeneral } from '../bus/general';
 
-export const useToday = () => {
+// Hooks
+import { useSortTasks } from './useSortTasks';
+
+export const useTasks = () => {
     const [unsortedUncompletedIsOpen, toggleUnsortedUncompletedIsOpen] = useState(true);
     const [unsortedCompletedIsOpen, toggleUnsortedCompletedIsOpen] = useState(true);
     const [completedIsOpen, toggleCompletedIsOpen] = useState(true);
     const tasks = useSelector(state => state.general.tasks);
     const lists = useSelector(state => state.general.lists);
     const { toggleUncompletedListIsOpen, toggleCompletedListIsOpen, toggleTaskImportant, toggleIsCompleted } = useGeneral();
+    const { sortByDeadline, sortCompletedFromLists, sortUnplanned } = useSortTasks();
+    
     return {
         tasks,
         lists,
@@ -25,5 +30,8 @@ export const useToday = () => {
         toggleCompletedListIsOpen,
         toggleTaskImportant,
         toggleIsCompleted,
+        sortByDeadline,
+        sortCompletedFromLists,
+        sortUnplanned,
     }
 }

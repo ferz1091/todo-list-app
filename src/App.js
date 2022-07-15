@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 // Pages
-import { Today, Important } from './view/pages';
+import { Today, Unplanned } from './view/pages';
 
 // Components
 import { Navbar, Header, Modal, AddNewTaskBtn } from './view/components';
@@ -30,16 +30,12 @@ const App = () => {
               element={<Today />}
             />
             <Route 
-              path='/i'
-              element={<Important />}
-            />
-            <Route 
               path='/p'
               element={<div>planned</div>}
             />
             <Route 
               path='/u'
-              element={<div>Unplanned</div>}
+              element={<Unplanned />}
             />
             <Route 
               path='/h'

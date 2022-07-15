@@ -5,7 +5,7 @@ import React from 'react';
 import { List, Unsorted, Completed } from '../../components';
 
 // Hooks
-import { useToday, useSortToday } from '../../../tools';
+import { useTasks } from '../../../tools';
 
 // Styles
 import { TodayWrapper } from './styles';
@@ -22,11 +22,34 @@ export const Today = () => {
             toggleUncompletedListIsOpen,
             toggleCompletedListIsOpen,
             toggleTaskImportant,
-            toggleIsCompleted } = useToday();
-    const { sortByDeadline, sortCompletedFromLists } = useSortToday();
+            toggleIsCompleted,
+            sortByDeadline,
+            sortCompletedFromLists } = useTasks();
 
     return (
         <TodayWrapper className='Today'>
+            {tasks.filter(task => task.date === new Date().toISOString().slice(0, 10)).length === 0
+                && lists.every(list => list.tasks.filter(task => task.date === new Date().toISOString().slice(0, 10)).length === 0) ?
+                <div className='Empty-tasks-div'>
+                    You don't have any tasks for today
+                </div>
+                :
+                tasks.filter(task => task.date === new Date().toISOString().slice(0, 10) && !task.isCompleted).sort((a, b) => {
+                    return sortByDeadline(a, b);
+                })
+                    .map((task, index, tasks) =>
+                        <Unsorted
+                            key={index}
+                            index={index}
+                            task={task}
+                            tasks={tasks}
+                            toggleTaskImportant={toggleTaskImportant}
+                            toggleIsCompleted={toggleIsCompleted}
+                            unsortedUncompletedIsOpen={unsortedUncompletedIsOpen}
+                            toggleUnsortedUncompletedIsOpen={toggleUnsortedUncompletedIsOpen}
+                        />
+                    )
+            }
             {lists.length === 0 ? null : lists.map((list) =>
                 [...list.tasks.filter(task => !task.isCompleted && task.date === new Date().toISOString().slice(0, 10))].sort((a, b) => {
                     return sortByDeadline(a, b);
@@ -44,28 +67,6 @@ export const Today = () => {
                         />
                     )
                 )
-            }
-            {tasks.filter(task => task.date === new Date().toISOString().slice(0, 10)).length === 0
-                && lists.every(list => list.tasks.filter(task => task.date === new Date().toISOString().slice(0, 10)).length === 0) ?
-                <div className='Empty-tasks-div'>
-                    You don't have any tasks for today
-                </div>
-                :
-                tasks.filter(task => task.date === new Date().toISOString().slice(0, 10) && !task.isCompleted).sort((a, b) => {
-                    return sortByDeadline(a, b);
-                })
-                    .map((task, index, tasks) =>
-                        <Unsorted
-                            key = {index}
-                            index={index}
-                            task={task}
-                            tasks={tasks}
-                            toggleTaskImportant={toggleTaskImportant}
-                            toggleIsCompleted={toggleIsCompleted}
-                            unsortedUncompletedIsOpen = {unsortedUncompletedIsOpen}
-                            toggleUnsortedUncompletedIsOpen = {toggleUnsortedUncompletedIsOpen}
-                        />
-                    )
             }
             {tasks.filter(task => task.isCompleted && task.date === new Date().toISOString().slice(0, 10)).length !== 0
                 || lists.filter(list => list.tasks.some(task => task.isCompleted && task.date === new Date().toISOString().slice(0, 10))).length !== 0

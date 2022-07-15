@@ -24,9 +24,6 @@ export const Navbar = () => {
                         {` `}tasks
                     </span>
                 </NavLink>
-                <NavLink to='/i'>
-                    Important
-                </NavLink>
                 <NavLink to='/p'>
                     Planned
                 </NavLink>

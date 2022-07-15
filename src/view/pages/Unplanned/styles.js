@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import dropIcon from '../../../assets/icons/drop-down.png';
 import upIcon from '../../../assets/icons/drop-up.png';
 
-export const TodayWrapper = styled.section`
+export const UnplannedWrapper = styled.section`
 position: relative;
 background-color: white;
 margin: 0 10px 5px 10px;
