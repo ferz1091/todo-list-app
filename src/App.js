@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 // Pages
-import { Today, Unplanned, Planned } from './view/pages';
+import { Today, Unplanned, Planned, History } from './view/pages';
 
 // Components
 import { Navbar, Header, Modal, AddNewTaskBtn } from './view/components';
@@ -39,7 +39,7 @@ const App = () => {
             />
             <Route 
               path='/h'
-              element={<div>History</div>}
+              element={<History />}
             />
             {lists.length !== 0 ? lists.map((list, index) => <Route key = {index} path = {`/${list.name}`} element={<div>{list.name}</div>}/>) : null}
           </Routes>
