@@ -17,6 +17,7 @@ export const NewList = (props) => {
             .max(10, 'Too long!')
             .required('Required!')
             .test('name', 'Such a list already exists!', (name) => lists.every(list => list.name !== name))
+            .matches(/^[aA-zZ\d\s]+$/, 'Only latin letters and numbers!')
     });
 
     const formik = useFormik({

@@ -35,7 +35,7 @@ export const Navbar = () => {
                 </NavLink>
             </div>
             <div className='lists'>
-                {lists.length !== 0 ? lists.map((list, index) => <NavLink key={index} to={`/${list.name}`}>{list.name}</NavLink>) : null}
+                {lists.length !== 0 ? lists.map((list, index) => <NavLink key={index} to={`/${list.name.replace(/ /g, '_')}`}>{list.name}</NavLink>) : null}
             </div>
         </NavbarWrapper>
     )
