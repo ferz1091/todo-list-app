@@ -18,6 +18,8 @@ export const ContextMenu = (props) => {
             moveTaskIsOpen,
             toggleMoveTaskIsOpen,
             toggleNewListModalActive,
+            toggleInfoModalActive,
+            toggleEditInfoModalActive,
             addTask,
             deleteTask } = useContextMenu();
 
@@ -174,6 +176,32 @@ export const ContextMenu = (props) => {
                     : 
                     null
                 }
+            </div>
+            <div 
+                className='info'
+                onClick={() => {
+                    toggleInfoModalActive(true);
+                    setCurrentTask(props.task);
+                    }
+                }
+            >
+                <span className='info-icon'></span>
+                <span className='option'>
+                    Show info
+                </span>
+            </div>
+            <div 
+                className='editInfo'
+                onClick={() => {
+                    toggleEditInfoModalActive(true);
+                    setCurrentTask(props.task);
+                    }
+                }
+            >
+                <span className='editInfo-icon'></span>
+                <span className='option'>
+                    Edit info
+                </span>
             </div>
             <div 
                 className='delete' 

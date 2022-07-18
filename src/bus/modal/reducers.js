@@ -46,6 +46,18 @@ export const toggleMoveTaskModalActive = (state, action) => {
         moveTask: action.payload,
     }
 }
+export const toggleInfoModalActive = (state, action) => {
+    return {
+        ...state,
+        info: action.payload,
+    }
+}
+export const toggleEditInfoModalActive = (state, action) => {
+    return {
+        ...state,
+        editInfo: action.payload,
+    }
+}
 export const setCurrentTask = (state, action) => {
     return {
         ...state,

@@ -62,7 +62,7 @@ export const ChangeDate = () => {
         },
         validationSchema,
         onSubmit: (values) => {
-            rescheduleExactTime({ ...task, time: values.time ? values.time : values.deadline === 'not planned' ? '' : task.time, date: values.date ? values.date : values.deadline === 'not planned' ? '' : task.date, deadline: values.deadline, isCompleted: false});
+            rescheduleExactTime({ ...task, time: values.time ? values.time : values.deadline === 'not planned' ? '' : task.time, date: values.date ? values.date : values.deadline === 'not planned' ? '' : task.date, deadline: values.deadline, isCompleted: false, completed: null});
             toggleChangeDateModalActive(false);
             resetCurrentTask();
         }

@@ -2,7 +2,7 @@
 import { useModalElement } from '../../../../tools';
 
 // Components
-import { NewTask, NewList, ExactTime, Hour, Day, ChangeDate, DeleteTask, MoveTask } from '../../';
+import { NewTask, NewList, ExactTime, Hour, Day, ChangeDate, DeleteTask, MoveTask, Info, EditInfo } from '../../';
 
 // Styles
 import { ModalWrapper } from './styles';
@@ -57,6 +57,16 @@ export const Modal = () => {
             }
             {modalIsActive.moveTask ?
                 <MoveTask />
+                :
+                null
+            }
+            {modalIsActive.editInfo ?
+                <EditInfo />
+                :
+                null
+            }
+            {modalIsActive.info ?
+                <Info />
                 :
                 null
             }

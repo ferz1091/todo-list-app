@@ -16,6 +16,8 @@ import dropRightIcon from '../../../../assets/icons/drop-right.png';
 import addIcon from '../../../../assets/icons/add.png';
 import crossIcon from '../../../../assets/icons/cross.png';
 import moveToIcon from '../../../../assets/icons/moveto.png';
+import infoIcon from '../../../../assets/icons/info.png';
+import editInfoIcon from '../../../../assets/icons/edit.png';
 
 export const ContextMenuWrapper = styled.div`
 position: absolute;
@@ -31,7 +33,7 @@ div {
     padding-left: 30px;
     padding-right: 5px;
 }
-.important-icon, .not-important-icon, .completed-icon, .not-completed-icon, .hour-icon, .day-icon, .change-date-icon, .clock-icon, .move-icon, .delete-icon, .add-icon, .cross-icon, .moveTo-icon {
+.important-icon, .not-important-icon, .completed-icon, .not-completed-icon, .hour-icon, .day-icon, .change-date-icon, .clock-icon, .move-icon, .delete-icon, .add-icon, .cross-icon, .moveTo-icon, .info-icon, .editInfo-icon {
     width: 20px;
     height: 20px;
     position: absolute;
@@ -76,6 +78,12 @@ div {
 }
 .moveTo-icon {
     background-image: url(${moveToIcon});
+}
+.info-icon {
+    background-image: url(${infoIcon});
+}
+.editInfo-icon {
+    background-image: url(${editInfoIcon});
 }
 .change-list {
     position: relative;

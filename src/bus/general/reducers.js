@@ -129,7 +129,8 @@ export const toggleIsCompleted = (state, action) => {
                             if (task.name === action.payload.name) {
                                 return {
                                     ...task,
-                                    isCompleted: !task.isCompleted
+                                    isCompleted: !task.isCompleted,
+                                    completed: !task.isCompleted ? action.payload.date : null
                                 }
                             } else {
                                 return {
@@ -152,7 +153,8 @@ export const toggleIsCompleted = (state, action) => {
                 if (task.name === action.payload.name) {
                     return {
                         ...task,
-                        isCompleted: !task.isCompleted
+                        isCompleted: !task.isCompleted,
+                        completed: !task.isCompleted ? action.payload.date : null
                     }
                 } else {
                     return {
@@ -197,6 +199,50 @@ export const rescheduleExactTime = (state, action) => {
                 if (task.name === action.payload.name) {
                     return {
                         ...action.payload
+                    }
+                } else {
+                    return {
+                        ...task
+                    }
+                }
+            })
+        }
+    }
+}
+export const changeTaskInfo = (state, action) => {
+    if (action.payload.task.list) {
+        return {
+            ...state,
+            lists: state.lists.map((list) => {
+                if (list.name === action.payload.task.list) {
+                    return {
+                        ...list,
+                        tasks: list.tasks.map((task) => {
+                            if (task.name === action.payload.prevName) {
+                                return {
+                                    ...action.payload.task
+                                }
+                            } else {
+                                return {
+                                    ...task
+                                }
+                            }
+                        })
+                    }
+                } else {
+                    return {
+                        ...list
+                    }
+                }
+            })
+        }
+    } else {
+        return {
+            ...state,
+            tasks: state.tasks.map((task) => {
+                if (task.name === action.payload.prevName) {
+                    return {
+                        ...action.payload.task
                     }
                 } else {
                     return {

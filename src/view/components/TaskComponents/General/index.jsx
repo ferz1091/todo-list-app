@@ -75,7 +75,7 @@ export const General = (props) => {
                     </span>
                     <span
                         className={props.task.isCompleted ? 'incomplete-btn' : 'complete-btn'}
-                        onClick={() => props.toggleIsCompleted(props.task.name, props.task.list)}>
+                        onClick={() => props.toggleIsCompleted(props.task.name, props.task.list, new Date().toLocaleString())}>
                     </span>
                     {contextMenuIsOpen ? 
                         <ContextMenu 

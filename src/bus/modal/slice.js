@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 // Reducers
 import * as reducers from './reducers';
 
-const initialState = {NewList: false, NewTask: false, ExactTime: false, Hour: false, Day: false, changeDate: false, deleteTask: false, moveTask: false, currentTask: null};
+const initialState = {NewList: false, NewTask: false, ExactTime: false, Hour: false, Day: false, changeDate: false, deleteTask: false, moveTask: false, editInfo: false, info: false, currentTask: null};
  
 export const modalSlice = createSlice({
     name: 'modal',

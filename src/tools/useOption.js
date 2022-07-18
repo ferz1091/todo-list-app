@@ -7,20 +7,23 @@ import { useModal } from '../bus/modal';
 
 export const useOption = () => {
     const task = useSelector(state => state.modal.currentTask);
-    const { rescheduleExactTime, deleteTask, addTask } = useGeneral();
+    const { rescheduleExactTime, deleteTask, addTask, changeTaskInfo } = useGeneral();
     const { toggleDayModalActive, 
             resetCurrentTask, 
             toggleHourModalActive, 
             toggleChangeDateModalActive, 
             toggleExactTimeModalActive, 
             toggleDeleteTaskModalActive,
-            toggleMoveTaskModalActive } = useModal();
+            toggleMoveTaskModalActive,
+            toggleInfoModalActive,
+            toggleEditInfoModalActive } = useModal();
 
     return {
         task,
         rescheduleExactTime,
         deleteTask,
         addTask,
+        changeTaskInfo,
         toggleDayModalActive,
         resetCurrentTask,
         toggleHourModalActive,
@@ -28,5 +31,7 @@ export const useOption = () => {
         toggleExactTimeModalActive,
         toggleDeleteTaskModalActive,
         toggleMoveTaskModalActive,
+        toggleInfoModalActive,
+        toggleEditInfoModalActive
     }
 }

@@ -6,7 +6,7 @@ import { HourWrapper } from './styles';
 
 export const Hour = () => {
     const { task, rescheduleExactTime, resetCurrentTask, toggleHourModalActive } = useOption();
-    const {date, time, displayDate} = useHour();
+    const { date, time, displayDate } = useHour();
 
     return (
         <HourWrapper 

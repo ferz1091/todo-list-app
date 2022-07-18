@@ -21,11 +21,14 @@ export const useGeneral = () => {
     function toggleTaskImportant(name, list) {
         dispatch(generalActions.toggleTaskImportant({name, list}))
     }
-    function toggleIsCompleted(name, list) {
-        dispatch(generalActions.toggleIsCompleted({name, list}))
+    function toggleIsCompleted(name, list, date) {
+        dispatch(generalActions.toggleIsCompleted({name, list, date}))
     }
     function rescheduleExactTime(task) {
         dispatch(generalActions.rescheduleExactTime(task))
+    }
+    function changeTaskInfo(task, prevName) {
+        dispatch(generalActions.changeTaskInfo({task, prevName}))
     }
     function deleteTask(name, list) {
         dispatch(generalActions.deleteTask({name, list}))
@@ -38,6 +41,7 @@ export const useGeneral = () => {
         toggleTaskImportant,
         toggleIsCompleted,
         rescheduleExactTime,
+        changeTaskInfo,
         deleteTask,
     }
 }

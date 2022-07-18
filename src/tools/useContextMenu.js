@@ -17,7 +17,9 @@ export const useContextMenu = () => {
             toggleChangeDateModalActive, 
             toggleDeleteTaskModalActive, 
             toggleMoveTaskModalActive, 
-            toggleNewListModalActive } = useModal();
+            toggleNewListModalActive,
+            toggleInfoModalActive,
+            toggleEditInfoModalActive } = useModal();
 
     return {
         lists,
@@ -33,6 +35,8 @@ export const useContextMenu = () => {
         moveTaskIsOpen,
         toggleMoveTaskIsOpen,
         toggleNewListModalActive,
+        toggleInfoModalActive,
+        toggleEditInfoModalActive,
         addTask,
         deleteTask,
     }
