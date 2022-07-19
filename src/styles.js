@@ -11,6 +11,7 @@ grid-gap: 5px;
 width: 100vw;
 height: 100vh;
 background-color: #dfdfdf;
+overflow: hidden;
 @media (max-width: 768px) {
     grid-template-columns: 1fr 100vw 1fr;
     grid-gap: 0px;  
@@ -23,6 +24,7 @@ display: grid;
 grid-template-columns: 1fr 80%;
 background-color: #dfdfdf;
 border: 1px solid black;
+overflow: hidden;
 .add-task-btn {
     position: absolute;
     bottom: 10%; right: 10%;

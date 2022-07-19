@@ -13,7 +13,7 @@ import { UnsortedWrapper } from './styles';
 
 export const Unsorted = (props) => {
     const { contextMenuIsOpen, toggleContextMenuIsOpen, optionBtnRef, contextMenuListener } = useContextMenuListener();
-    console.log(props);
+
     return (
         <UnsortedWrapper>
             {props.index === 0 ?
@@ -52,16 +52,6 @@ export const Unsorted = (props) => {
                         <span className='prop-time'>
                             {props.task.time}
                         </span>
-                        {props.task.time ? 
-                            Number(props.task.time.replace(':', '')) < Number(new Date().toLocaleTimeString().slice(0, 5).replace(':', '')) ?
-                                <span className='overdue-warning'>
-                                    overdue
-                                </span>
-                                : 
-                                null 
-                            : 
-                            null
-                        }
                         <span
                             className='options-btn'
                             ref={optionBtnRef}

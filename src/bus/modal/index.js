@@ -36,6 +36,12 @@ export const useModal = () => {
     function toggleEditInfoModalActive(isActive) {
         dispatch(modalActions.toggleEditInfoModalActive(isActive))
     }
+    function toggleRenameListModalActive(isActive) {
+        dispatch(modalActions.toggleRenameListModalActive(isActive))
+    }
+    function toggleDeleteListModalActive(isActive) {
+        dispatch(modalActions.toggleDeleteListModalActive(isActive))
+    }
     function setCurrentTask(task) {
         dispatch(modalActions.setCurrentTask(task))
     }
@@ -55,5 +61,7 @@ export const useModal = () => {
         toggleMoveTaskModalActive,
         toggleInfoModalActive,
         toggleEditInfoModalActive,
+        toggleRenameListModalActive,
+        toggleDeleteListModalActive,
     }
 }

@@ -1,3 +1,6 @@
+// Core
+import { useState } from 'react';
+
 // Hooks
 import { useTasks } from '../../../tools';
 
@@ -8,6 +11,7 @@ import { General } from '../../components';
 import { PlannedWrapper } from './styles';
 
 export const Planned = () => {
+    const [arrayDateIsOpen, setArrayDateIsOpen] = useState([]);
     const { tasks, 
             lists,
             sortPlanned,
@@ -28,7 +32,18 @@ export const Planned = () => {
                         return sortPlanned(a, b);
                         }
                     )
-                .map((task, index, tasks) => <General key={index} task={task} tasks={tasks} index={index} toggleIsCompleted={toggleIsCompleted} toggleTaskImportant={toggleTaskImportant} />)
+                .map((task, index, tasks) => 
+                    <General 
+                        key={index} 
+                        task={task} 
+                        tasks={tasks} 
+                        index={index} 
+                        toggleIsCompleted={toggleIsCompleted} 
+                        toggleTaskImportant={toggleTaskImportant}
+                        arrayDateIsOpen={arrayDateIsOpen}
+                        setArrayDateIsOpen={setArrayDateIsOpen}
+                    />
+                )
             }
         </PlannedWrapper>
     )

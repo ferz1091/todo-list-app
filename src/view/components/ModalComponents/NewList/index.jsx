@@ -18,6 +18,7 @@ export const NewList = (props) => {
             .required('Required!')
             .test('name', 'Such a list already exists!', (name) => lists.every(list => list.name !== name))
             .matches(/^[aA-zZ\d\s]+$/, 'Only latin letters and numbers!')
+            .test('name', 'Wrong!', (name) => Array.from(name).some(letter => letter !== ' '))
     });
 
     const formik = useFormik({
@@ -26,7 +27,7 @@ export const NewList = (props) => {
         },
         validationSchema,
         onSubmit: (values) => {
-            props.addList({...values, tasks: [], isOpen: {uncompleted: true, completed: true}});
+            props.addList({name: values.name.trim(), tasks: [], isOpen: {uncompleted: true, completed: true}});
             if (currentTask) {
                 props.deleteTask(currentTask.name, currentTask.list);
                 props.addTask({...currentTask, list: values.name});

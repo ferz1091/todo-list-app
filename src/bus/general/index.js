@@ -33,6 +33,12 @@ export const useGeneral = () => {
     function deleteTask(name, list) {
         dispatch(generalActions.deleteTask({name, list}))
     }
+    function renameList(name, prevName) {
+        dispatch(generalActions.renameList({name, prevName}))
+    }
+    function deleteList(list) {
+        dispatch(generalActions.deleteList(list))
+    }
     return {
         addTask,
         addList,
@@ -43,5 +49,7 @@ export const useGeneral = () => {
         rescheduleExactTime,
         changeTaskInfo,
         deleteTask,
+        renameList,
+        deleteList,
     }
 }

@@ -47,16 +47,6 @@ export const List = (props) => {
                             <span className='prop-time'>
                                 {props.task.time}
                             </span>
-                            {props.task.time ?
-                                Number(props.task.time.replace(':', '')) < Number(new Date().toLocaleTimeString().slice(0, 5).replace(':', '')) ?
-                                    <span className='overdue-warning'>
-                                        overdue
-                                    </span>
-                                    :
-                                    null
-                                :
-                                null
-                            }
                             <span
                                 className='options-btn'
                                 ref={optionBtnRef}

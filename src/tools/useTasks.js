@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux/es/exports';
 
 // Bus
 import { useGeneral } from '../bus/general';
+import { useModal } from '../bus/modal';
 
 // Hooks
 import { useSortTasks } from './useSortTasks';
@@ -15,6 +16,7 @@ export const useTasks = () => {
     const tasks = useSelector(state => state.general.tasks);
     const lists = useSelector(state => state.general.lists);
     const { toggleUncompletedListIsOpen, toggleCompletedListIsOpen, toggleTaskImportant, toggleIsCompleted } = useGeneral();
+    const { toggleDeleteListModalActive, toggleRenameListModalActive } = useModal();
     const { sortByDeadline, sortCompletedFromLists, sortUnplanned, sortPlanned } = useSortTasks();
 
     return {
@@ -34,5 +36,7 @@ export const useTasks = () => {
         sortCompletedFromLists,
         sortUnplanned,
         sortPlanned,
+        toggleDeleteListModalActive,
+        toggleRenameListModalActive
     }
 }

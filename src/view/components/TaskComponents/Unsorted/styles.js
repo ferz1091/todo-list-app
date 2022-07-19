@@ -12,13 +12,6 @@ export const UnsortedWrapper = styled.div`
     position: relative;
     display: flex;
     border-bottom: 1px solid black;
-    .overdue-warning {
-        position: absolute;
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-        color: red;
-        font-weight: bold;
-    }
     .prop-name {
         padding-left: 5px;
     }
@@ -65,7 +58,7 @@ export const UnsortedWrapper = styled.div`
     }
 }
 .task-body-overdue {
-    border: 1px solid red;
+    border-bottom: 1px solid black;
     background-color: rgba(255, 0, 0, 0.1);
     .prop-time {
         font-weight: bold;

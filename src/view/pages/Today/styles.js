@@ -9,6 +9,10 @@ export const TodayWrapper = styled.section`
 position: relative;
 background-color: white;
 margin: 0 10px 5px 10px;
+overflow: auto;
+::-webkit-scrollbar {
+    width: 0px;
+}
 .Empty-tasks-div {
     display: flex;
     align-items: center;

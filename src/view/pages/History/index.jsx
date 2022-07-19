@@ -1,3 +1,6 @@
+// Core
+import { useState } from 'react';
+
 // Hooks
 import { useTasks, useSortTasks } from '../../../tools';
 
@@ -8,6 +11,7 @@ import { General } from '../../components';
 import { HistoryWrapper } from './styles';
 
 export const History = () => {
+    const [arrayDateIsOpen, setArrayDateIsOpen] = useState([]);
     const { tasks, lists, toggleIsCompleted, toggleTaskImportant } = useTasks();
     const { sortPlanned } = useSortTasks();
 
@@ -26,7 +30,18 @@ export const History = () => {
                 }
                 )
                 .reverse()
-                .map((task, index, tasks) => <General key={index} task={task} tasks={tasks} index={index} toggleIsCompleted={toggleIsCompleted} toggleTaskImportant={toggleTaskImportant} />)
+                .map((task, index, tasks) => 
+                    <General 
+                        key={index} 
+                        task={task} 
+                        tasks={tasks} 
+                        index={index} 
+                        toggleIsCompleted={toggleIsCompleted} 
+                        toggleTaskImportant={toggleTaskImportant} 
+                        arrayDateIsOpen={arrayDateIsOpen}
+                        setArrayDateIsOpen={setArrayDateIsOpen}
+                    />
+                )
             }
         </HistoryWrapper>
     )

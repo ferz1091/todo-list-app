@@ -1,5 +1,5 @@
 // Core
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 // Pages
@@ -41,7 +41,11 @@ const App = () => {
               path='/h'
               element={<History />}
             />
-            {lists.length !== 0 ? lists.map((list, index) => <Route key={index} path={`/${list.name.replace(/ /g, '_')}`} element={<List />}/>) : null}
+            <Route
+              path='*'
+              element={<Navigate to='/' replace />} 
+            />
+            {lists.length !== 0 ? lists.map((list, index) => <Route key={index} path={`/${list.name.replace(/ /g, '_')}`} element={<List {...list} />}/>) : null}
           </Routes>
           {modalIsOn ? <Modal /> : null}
           {!modalIsOn ? <AddNewTaskBtn /> : null}

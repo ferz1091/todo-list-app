@@ -58,6 +58,18 @@ export const toggleEditInfoModalActive = (state, action) => {
         editInfo: action.payload,
     }
 }
+export const toggleRenameListModalActive = (state, action) => {
+    return {
+        ...state,
+        renameList: action.payload,
+    }
+}
+export const toggleDeleteListModalActive = (state, action) => {
+    return {
+        ...state,
+        deleteList: action.payload,
+    }
+}
 export const setCurrentTask = (state, action) => {
     return {
         ...state,

@@ -277,3 +277,26 @@ export const deleteTask = (state, action) => {
         }
     }
 }
+export const renameList = (state, action) => {
+    return {
+        ...state,
+        lists: state.lists.map(list => {
+            if (list.name === action.payload.prevName) {
+                return {
+                    ...list,
+                    name: action.payload.name
+                }
+            } else {
+                return {
+                    ...list
+                }
+            }
+        })
+    }
+}
+export const deleteList = (state, action) => {
+    return {
+        ...state,
+        lists: state.lists.filter(list => list.name !== action.payload)
+    }
+}
