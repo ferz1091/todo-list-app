@@ -1,21 +1,26 @@
 // Core
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux/es/exports';
 
-// Bus
-import { useModal } from '../../../../bus/modal';
+// Hooks
+import { useTasks } from '../../../../tools/';
 
 // Styles
 import { NavbarWrapper } from './styles';
 
 export const Navbar = () => {
-    const { toggleNewListModalActive } = useModal();
-    const lists = useSelector(state => state.general.lists);
+    const { lists, toggleNewListModalActive } = useTasks();
 
     return (
-        <NavbarWrapper className='Navbar'>
+        <NavbarWrapper 
+            className='Navbar' 
+            length={lists.length}
+        >
             <div className='main-btns'>
-                <button onClick={() => toggleNewListModalActive(true)} className='add-list'>Add list</button>
+                <button 
+                    onClick={() => toggleNewListModalActive(true)} 
+                    className='add-list'>
+                        Add list
+                    </button>
                 <NavLink to='/'>
                     <span>
                         Today
@@ -35,7 +40,15 @@ export const Navbar = () => {
                 </NavLink>
             </div>
             <div className='lists'>
-                {lists.length !== 0 ? lists.map((list, index) => <NavLink key={index} to={`/${list.name.replace(/ /g, '_')}`}>{list.name}</NavLink>) : null}
+                {lists.length !== 0 ? lists.map((list, index) => 
+                    <NavLink 
+                        key={index} 
+                        to={`/${list.name.replace(/ /g, '_')}`}>
+                            {list.name}
+                        </NavLink>) 
+                        : 
+                        null
+                    }
             </div>
         </NavbarWrapper>
     )

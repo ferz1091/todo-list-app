@@ -11,17 +11,29 @@ background-color: rgba(50,50,50, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    width: 50vw;
-    padding: 20px;
-    border-radius: 20px;
-    text-align: center;
+    span {
+        padding: 10px 0;
+        text-align: center;
+    }
+    #time {
+        font-weight: 700;
+    }
     button {
-        margin: 5px;
-        padding: 5px;
+        background-color: rgba(50,50,50, 0.5);
+        color: gray;
+        border: 2px solid gray;
+        width: 70px;
+        height: 25px;
+        margin: 5px 10px 0 10px;
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out;
+    }
+    button:hover {
+        color: white;
+        background-color: rgba(110, 110, 110, 0.5);
+    }
+    button:active {
+        background-color: gray;
     }
 }
 `;

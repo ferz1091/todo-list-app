@@ -5,8 +5,7 @@ import { useOption } from '../../../../tools';
 import { InfoWrapper } from './styles';
 
 export const Info = () => {
-    const { task, toggleInfoModalActive, resetCurrentTask } = useOption();
-    console.log(task);
+    const { currentTask, toggleInfoModalActive, resetCurrentTask } = useOption();
 
     return (
         <InfoWrapper 
@@ -26,22 +25,22 @@ export const Info = () => {
                 }
             >
                 <span>
-                    Name: {task.name}.
+                    Name: {currentTask.name}.
                 </span>
                 <span>
-                    List: {task.list ? task.list : 'none'}.
+                    List: {currentTask.list ? currentTask.list : 'none'}.
                 </span>
                 <span>
-                    Description: {task.description ? task.description : 'none'}.
+                    Description: {currentTask.description ? currentTask.description : 'none'}.
                 </span>
                 <span>
-                    Deadline: {task.date ? `${task.time}${task.time ? ', ' : ''}${task.date.slice(8, 10)}.${task.date.slice(5, 7)}.${task.date.slice(0, 4)}` : 'none'}.
+                    Deadline: {currentTask.date ? `${currentTask.time}${currentTask.time ? ', ' : ''}${currentTask.date.slice(8, 10)}.${currentTask.date.slice(5, 7)}.${currentTask.date.slice(0, 4)}` : 'none'}.
                 </span>
                 <span>
-                    Completed: {task.isCompleted ? `${task.completed.slice(12, 17)}, ${task.completed.slice(0, 10)}` : 'not completed.'}
+                    Completed: {currentTask.isCompleted ? `${currentTask.completed.slice(12, 17)}, ${currentTask.completed.slice(0, 10)}` : 'not completed.'}
                 </span>
                 <span>
-                    Created: {`${task.created.slice(12, 17)}, ${task.created.slice(0, 10)}`}
+                    Created: {`${currentTask.created.slice(12, 17)}, ${currentTask.created.slice(0, 10)}`}
                 </span>
             </div>
         </InfoWrapper>

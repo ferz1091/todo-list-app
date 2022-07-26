@@ -2,40 +2,14 @@
 import styled from 'styled-components';
 
 // Assets
+import dropIcon from '../../../assets/icons/drop-down-white.png';
+import upIcon from '../../../assets/icons/drop-up-white.png';
 import renameListIcon from '../../../assets/icons/editList.png';
-import deleteListIcon from '../../../assets/icons/delete.png';
+import deleteListIcon from '../../../assets/icons/delete-white.png';
 import deleteListHoverIcon from '../../../assets/icons/delete-hover.png';
 import renameListHoverIcon from '../../../assets/icons/editList-hover.png';
 
 export const ListWrapper = styled.section`
-position: relative;
-background-color: white;
-margin: 0 10px 5px 10px;
-overflow: auto;
-::-webkit-scrollbar {
-    width: 0px;
-}
-.Empty-tasks-div {
-    position: absolute;
-    top: 0; left:0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    border-radius: 15px;
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-}
-.control-panel {
-    position: relative;
-    z-index: 999;
-    display: flex;
-    justify-content: center;
-    border: 1px solid black;
-    h1 {
-        margin: 0;
-    }
     .renameList-icon, .deleteList-icon {
         position: absolute;
         width: 20px;
@@ -50,13 +24,30 @@ overflow: auto;
     }
     .deleteList-icon {
         right: 5px;
-        background-image: url(${deleteListHoverIcon});
+        background-image: url(${deleteListIcon});
     }
     .deleteList-icon:hover {
-        background-image: url(${deleteListIcon})
+        background-image: url(${deleteListHoverIcon})
     }
     .renameList-icon:hover {
         background-image: url(${renameListHoverIcon})
     }
-}
+    .dropIcon, .upIcon {
+        position: absolute;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        background-image: url(${upIcon});
+    }
+    .upIcon {
+        background-image: url(${dropIcon});
+    }
+`;
+
+export const TaskSectionWrapper = styled.div`
+margin: 5px 0;
+padding: 0 5px;
+padding-bottom: ${props => props.isOpen ? '5px;' : '0px;'};
+border-radius: 25px;
+background-color: rgba(70, 70, 70, 0.85);
 `;

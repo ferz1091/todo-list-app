@@ -10,8 +10,9 @@ export const Header = () => {
             <div className='Logo'>
                 <img
                     src={Logo}
-                    alt='logo' />
-                    TODO
+                    alt='logo' 
+                />
+                TODO
             </div>
         </HeaderWrapper>
     )

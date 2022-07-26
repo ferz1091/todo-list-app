@@ -5,7 +5,10 @@ import { useOption, useHour } from '../../../../tools';
 import { HourWrapper } from './styles';
 
 export const Hour = () => {
-    const { task, rescheduleExactTime, resetCurrentTask, toggleHourModalActive } = useOption();
+    const { currentTask, 
+            rescheduleExactTime, 
+            resetCurrentTask, 
+            toggleHourModalActive } = useOption();
     const { date, time, displayDate } = useHour();
 
     return (
@@ -19,24 +22,26 @@ export const Hour = () => {
         >
             <div className='modal'>
                 <span>
-                    {`Task "${task.name}" the task will be reschedule to`}
+                    {`Task "${currentTask.name}" will be reschedule to`}
                 </span>
-                <span>{
-                `${time} ${displayDate}`}
+                <span id='time'>
+                    {`${time} ${displayDate}`}
                 </span>
                 <span>
                     <button onClick={() => { 
                         toggleHourModalActive(false); 
                         resetCurrentTask() 
                         }
-                    }>
+                        }
+                    >
                         Decline
                     </button>
                     <button onClick={() => { 
-                        rescheduleExactTime({ ...task, date: date, time: time }); 
+                        rescheduleExactTime({ ...currentTask, date: date, time: time }); 
                         resetCurrentTask() 
                         }
-                    }>
+                        }
+                    >
                         Accept
                     </button>
                 </span>

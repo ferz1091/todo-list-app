@@ -2,13 +2,30 @@
 import { useModalElement } from '../../../../tools';
 
 // Components
-import { NewTask, NewList, ExactTime, Hour, Day, ChangeDate, DeleteTask, MoveTask, Info, EditInfo, RenameList, DeleteList } from '../../';
+import { NewTask, 
+        NewList, 
+        ExactTime, 
+        Hour, 
+        Day, 
+        ChangeDate, 
+        DeleteTask, 
+        MoveTask, 
+        Info, 
+        EditInfo, 
+        RenameList, 
+        DeleteList } from '../../';
 
 // Styles
 import { ModalWrapper } from './styles';
 
 export const Modal = () => {
-    const { modalIsActive, addTask, addList, deleteTask, toggleNewTaskModalActive, toggleNewListModalActive, resetCurrentTask } = useModalElement();
+    const { modalIsActive, 
+            addTask, 
+            addList, 
+            deleteTask, 
+            toggleNewTaskModalActive, 
+            toggleNewListModalActive, 
+            resetCurrentTask } = useModalElement();
     return (
         <ModalWrapper>
             {modalIsActive.NewTask ?

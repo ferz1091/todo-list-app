@@ -9,7 +9,10 @@ import { useOption } from '../../../../tools';
 import { ChangeDateWrapper } from './styles';
 
 export const ChangeDate = () => {
-    const { task, toggleChangeDateModalActive, resetCurrentTask, rescheduleExactTime } = useOption();
+    const { currentTask, 
+            toggleChangeDateModalActive, 
+            resetCurrentTask, 
+            rescheduleExactTime } = useOption();
 
     const validationSchema = Yup.object().shape({
         deadline: Yup.string()
@@ -19,7 +22,7 @@ export const ChangeDate = () => {
                 is: (deadline) => deadline && deadline !== 'not planned',
                 then: Yup.string()
                     .when('deadline', {
-                        is: (deadline) => deadline === 'exact time' && !task.time,
+                        is: (deadline) => deadline === 'exact time' && !currentTask.time,
                         then: Yup.string()
                             .required('Required!')
                     })
@@ -29,12 +32,12 @@ export const ChangeDate = () => {
                             .required('Set time or date!')
                     })
                     .when('date', {
-                        is: (date) => !date && task.date === new Date().toISOString().slice(0, 10),
+                        is: (date) => !date && currentTask.date === new Date().toISOString().slice(0, 10),
                         then: Yup.string()
                             .test('time', 'Past time!', (time) => time && Number(time.replace(':', '') > Number(new Date().toLocaleTimeString().slice(0, 5).replace(':', ''))))
                     })
                     .when('date', {
-                        is: (date) => date && String(date).slice(0, 15) === String(new Date()).slice(0, 15),
+                        is: (date) => date && String(date).slice(0, 15) === String(new Date(currentTask.date)).slice(0, 15),
                         then: Yup.string()
                             .test('time', 'Nothing changed!', (time) => time)
                             .test('time', 'Past time!', (time) => time && Number(time.replace(':', '') > Number(new Date().toLocaleTimeString().slice(0, 5).replace(':', ''))))
@@ -48,8 +51,13 @@ export const ChangeDate = () => {
                         is: (time) => !time,
                         then: Yup.date()
                             .required('Set time or date!')
-                            .test('date', 'Nothing changed!', (date) => date && String(date).slice(0, 15) !== String(new Date(task.date)).slice(0, 15))
+                            .test('date', 'Nothing changed!', (date) => date && String(date).slice(0, 15) !== String(new Date(currentTask.date)).slice(0, 15))
                     })
+            })
+            .when('deadline', {
+                is: (deadline) => deadline === 'not planned',
+                then: Yup.date()
+                    .test('date', 'Nothing changed!', (date) => currentTask.deadline === 'not planned' && date)
             })
             .min(new Date(new Date() - 86400000), 'Past time!')
     })
@@ -62,7 +70,18 @@ export const ChangeDate = () => {
         },
         validationSchema,
         onSubmit: (values) => {
-            rescheduleExactTime({ ...task, time: values.time ? values.time : values.deadline === 'not planned' ? '' : task.time, date: values.date ? values.date : values.deadline === 'not planned' ? '' : task.date, deadline: values.deadline, isCompleted: false, completed: null});
+            rescheduleExactTime({ ...currentTask, time: values.time ? values.time : values.deadline === 'not planned' ? 
+                '' 
+                : 
+                currentTask.time, date: values.date ? 
+                    values.date 
+                    : 
+                    values.deadline === 'not planned' ? 
+                        '' 
+                        : 
+                        currentTask.date, deadline: values.deadline, isCompleted: false, completed: null
+                }
+            );
             toggleChangeDateModalActive(false);
             resetCurrentTask();
         }
@@ -106,8 +125,9 @@ export const ChangeDate = () => {
                         htmlFor='deadline'
                     >
                         <label htmlFor='deadline-true'>
-                            Deadline
-                        </label>
+                            <span>
+                                Deadline time
+                            </span>
                         <input 
                             id='deadline' 
                             name='deadline' 
@@ -115,19 +135,23 @@ export const ChangeDate = () => {
                             onChange={formik.handleChange} 
                             value={'deadline'} 
                         />
-                        <label htmlFor='deadline-false'>
-                            Exact time
                         </label>
-                        <input 
-                            id='deadline' 
-                            name='deadline' 
-                            type='radio' 
-                            onChange={formik.handleChange} 
-                            value={'exact time'} 
-                        />
                         <label htmlFor='deadline-false'>
-                            Not planned
+                            <span>
+                                Exact time
+                            </span>
+                            <input
+                                id='deadline'
+                                name='deadline'
+                                type='radio'
+                                onChange={formik.handleChange}
+                                value={'exact time'}
+                            />
                         </label>
+                        <label htmlFor='deadline-false'>
+                            <span>
+                                Not planned
+                            </span>
                         <input 
                             id='deadline' 
                             name='deadline' 
@@ -140,6 +164,7 @@ export const ChangeDate = () => {
                             onChange={formik.handleChange} 
                             value={'not planned'} 
                         />
+                        </label>
                     </label>
                     <label htmlFor='date'>
                         {formik.errors.date && formik.touched.date ? 

@@ -9,7 +9,10 @@ import { useOption } from '../../../../tools';
 import { ExactTimeWrapper } from './styles';
 
 export const ExactTime = () => {
-    const {task, toggleExactTimeModalActive, resetCurrentTask, rescheduleExactTime } = useOption();
+    const {currentTask, 
+            toggleExactTimeModalActive, 
+            resetCurrentTask, 
+            rescheduleExactTime } = useOption();
 
     const validationSchema = Yup.object().shape({
         time: Yup.string()
@@ -19,9 +22,9 @@ export const ExactTime = () => {
                     .test('time', 'Past time!', (time) => Number(time.replace(':', '') > Number(new Date().toLocaleTimeString().slice(0, 5).replace(':', ''))))
             })
             .when('date', {
-                is: (date) => !date && task.date === new Date().toISOString().slice(0, 10),
+                is: (date) => !date && currentTask.date === new Date().toISOString().slice(0, 10),
                 then: Yup.string()
-                    .test('time', 'Past time!', (time) => Number(time.replace(':', '') > Number(new Date().toLocaleTimeString().slice(0, 5).replace(':', ''))))
+                    .test('time', 'Past time!', (time) => time && Number(time.replace(':', '') > Number(new Date().toLocaleTimeString().slice(0, 5).replace(':', ''))))
             })
             .required('Required'),
         date: Yup.date()
@@ -41,7 +44,7 @@ export const ExactTime = () => {
         },
         validationSchema,
         onSubmit: (values) => {
-            rescheduleExactTime({ ...task, deadline: 'exact time', time: values.time, date: values.date ? values.date : task.date });
+            rescheduleExactTime({ ...currentTask, deadline: 'exact time', time: values.time, date: values.date ? values.date : currentTask.date });
             toggleExactTimeModalActive(false);
             resetCurrentTask();
         },

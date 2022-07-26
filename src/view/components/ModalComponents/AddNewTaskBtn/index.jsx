@@ -1,17 +1,14 @@
 // Hooks
 import { useModalElement } from '../../../../tools';
 
-// Styles
-import { AddNewTaskBtnWrapper } from './styles';
-
 export const AddNewTaskBtn = () => {
-    const {toggleNewTaskModalActive} = useModalElement();
+    const { toggleNewTaskModalActive } = useModalElement();
     return (
-        <AddNewTaskBtnWrapper 
+        <button 
             className='add-task-btn' 
             onClick={() => toggleNewTaskModalActive(true)}
         >
             +
-        </AddNewTaskBtnWrapper>
+        </button>
     )
 }

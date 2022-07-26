@@ -2,7 +2,6 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 // Hooks
 import { useOption } from '../../../../tools';
@@ -11,10 +10,9 @@ import { useOption } from '../../../../tools';
 import { RenameListWrapper } from './styles';
 
 export const RenameList = () => {
-    const { toggleRenameListModalActive, renameList } = useOption();
+    const { toggleRenameListModalActive, renameList, lists } = useOption();
     const location = useLocation();
     const navigate = useNavigate();
-    const lists = useSelector(state => state.general.lists);
 
     const validationSchema = Yup.object().shape({
         name: Yup.string()
@@ -47,10 +45,33 @@ export const RenameList = () => {
                 onClick={(e) => e.stopPropagation()}
             >
                 <form onSubmit={formik.handleSubmit}>
-                    <label htmlFor='name'>{formik.errors.name && formik.touched.name ? <div className='error'>{formik.errors.name}</div> : 'Name'}</label>
-                    <input autoFocus className={formik.errors.name && formik.touched.name ? 'input-error' : 'input'} id='name' name='name' type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.name} />
-                    <label className='submit' htmlFor='submit'>
-                        <input type='submit' value='Create' />
+                    <label htmlFor='name'>
+                        {formik.errors.name && formik.touched.name ? 
+                            <div className='error'>
+                                {formik.errors.name}
+                            </div> 
+                            : 
+                            'Name'
+                        }
+                    </label>
+                    <input 
+                        autoFocus 
+                        className={formik.errors.name && formik.touched.name ? 'input-error' : 'input'} 
+                        id='name' 
+                        name='name' 
+                        type='text' 
+                        onChange={formik.handleChange} 
+                        onBlur={formik.handleBlur} 
+                        value={formik.values.name} 
+                    />
+                    <label 
+                        className='submit' 
+                        htmlFor='submit'
+                    >
+                        <input 
+                            type='submit' 
+                            value='Create' 
+                        />
                     </label>
                 </form>
             </div>

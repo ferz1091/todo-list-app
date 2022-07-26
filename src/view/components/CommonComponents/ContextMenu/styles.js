@@ -11,11 +11,11 @@ import dayIcon from '../../../../assets/icons/day.png';
 import changeDateIcon from '../../../../assets/icons/change-date.png';
 import clockIcon from '../../../../assets/icons/clock.png';
 import moveIcon from '../../../../assets/icons/move-task.png';
-import deleteIcon from '../../../../assets/icons/delete.png';
-import dropRightIcon from '../../../../assets/icons/drop-right.png';
-import addIcon from '../../../../assets/icons/add.png';
-import crossIcon from '../../../../assets/icons/cross.png';
-import moveToIcon from '../../../../assets/icons/moveto.png';
+import deleteIcon from '../../../../assets/icons/delete-white.png';
+import dropRightIcon from '../../../../assets/icons/drop-right-white.png';
+import addIcon from '../../../../assets/icons/add-white.png';
+import crossIcon from '../../../../assets/icons/cross-white.png';
+import moveToIcon from '../../../../assets/icons/moveto-white.png';
 import infoIcon from '../../../../assets/icons/info.png';
 import editInfoIcon from '../../../../assets/icons/edit.png';
 
@@ -23,11 +23,19 @@ export const ContextMenuWrapper = styled.div`
 position: absolute;
 left: 5px;
 z-index: 999;
-background-color: white;
-border: 1px solid black;
+background-color: rgb(70, 70, 70);
+color: white;
+border: 2px solid rgb(90, 90, 90);
+border-radius: 5px;
 div {
     padding: 5px 0;
     cursor: pointer;
+}
+.btn {
+    transition: all 0.2s ease-in-out;
+}
+.btn:hover {
+    background-color: rgb(90, 90, 90);
 }
 .option {
     padding-left: 30px;
@@ -94,8 +102,10 @@ div {
     position: absolute;
     top: 0; left: 100%;
     z-index: 999;
-    background-color: white;
-    border: 1px solid black;
+    background-color: rgb(70, 70, 70);
+    color: white;
+    border: 2px solid rgb(90, 90, 90);
+    border-radius: 5px;
     .option-subpanel, .option-subpanel-disabled {
         white-space: nowrap;
         padding-left: 30px;

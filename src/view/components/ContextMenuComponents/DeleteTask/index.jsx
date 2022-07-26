@@ -5,7 +5,10 @@ import { useOption } from '../../../../tools';
 import { DeleteTaskWrapper } from './styles';
 
 export const DeleteTask = () => {
-    const { task, toggleDeleteTaskModalActive, resetCurrentTask, deleteTask } = useOption();
+    const { currentTask, 
+            toggleDeleteTaskModalActive, 
+            resetCurrentTask, 
+            deleteTask } = useOption();
 
     return (
         <DeleteTaskWrapper 
@@ -21,7 +24,7 @@ export const DeleteTask = () => {
                 onClick={(e) => e.stopPropagation()}
             >
                 <span>
-                    Are you sure you want to delete task {`"${task.name}"`}?
+                    Are you sure you want to delete task {`"${currentTask.name}"`}?
                 </span>
                 <span>
                     <button 
@@ -35,7 +38,7 @@ export const DeleteTask = () => {
                     </button>
                     <button 
                         onClick={() => { 
-                            deleteTask(task.name, task.list); 
+                            deleteTask(currentTask.name, currentTask.list); 
                             toggleDeleteTaskModalActive(false); 
                             resetCurrentTask()
                             }

@@ -6,7 +6,9 @@ import { useGeneral } from '../bus/general';
 import { useModal } from '../bus/modal';
 
 export const useOption = () => {
-    const task = useSelector(state => state.modal.currentTask);
+    const currentTask = useSelector(state => state.modal.currentTask);
+    const tasks = useSelector(state => state.general.tasks);
+    const lists = useSelector(state => state.general.lists);
     const { rescheduleExactTime, deleteTask, addTask, changeTaskInfo, renameList, deleteList } = useGeneral();
     const { toggleDayModalActive, 
             resetCurrentTask, 
@@ -21,7 +23,9 @@ export const useOption = () => {
             toggleRenameListModalActive } = useModal();
 
     return {
-        task,
+        currentTask,
+        tasks,
+        lists,
         rescheduleExactTime,
         deleteTask,
         addTask,

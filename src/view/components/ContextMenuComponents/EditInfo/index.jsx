@@ -9,7 +9,10 @@ import { useOption } from '../../../../tools';
 import { EditInfoWrapper } from './styles';
 
 export const EditInfo = () => {
-    const { task, toggleEditInfoModalActive, resetCurrentTask, changeTaskInfo } = useOption();
+    const { currentTask, 
+            toggleEditInfoModalActive, 
+            resetCurrentTask, 
+            changeTaskInfo } = useOption();
 
     const validationSchema = Yup.object().shape({
         name: Yup.string()
@@ -49,7 +52,7 @@ export const EditInfo = () => {
         },
         validationSchema,
         onSubmit: (values) => {
-            changeTaskInfo({...task, name: values.name ? values.name : task.name , description: values.description ? values.description : task.description}, task.name);
+            changeTaskInfo({ ...currentTask, name: values.name ? values.name : currentTask.name, description: values.description ? values.description : currentTask.description }, currentTask.name);
             toggleEditInfoModalActive(false);
             resetCurrentTask();
         }
@@ -93,7 +96,7 @@ export const EditInfo = () => {
                             name='name' 
                             id='name' 
                             type='text' 
-                            placeholder={task.name} 
+                            placeholder={currentTask.name} 
                             onChange={formik.handleChange} 
                             onBlur={formik.handleBlur} 
                             value={formik.values.name} 
@@ -123,7 +126,7 @@ export const EditInfo = () => {
                             name='description' 
                             id='description' 
                             type='text' 
-                            placeholder={task.description ? task.description : 'description...'} 
+                            placeholder={currentTask.description ? currentTask.description : 'description...'} 
                             onChange={formik.handleChange} 
                             onBlur={formik.handleBlur} 
                             value={formik.values.description} 

@@ -6,39 +6,20 @@ import { ContextMenu } from '../../';
 
 // Assets
 import importantIcon from '../../../../assets/icons/important.png';
-import nonImportantIcon from '../../../../assets/icons/not-important.png';
+import nonImportantIcon from '../../../../assets/icons/not-important-white.png';
 
 // Styles
 import { UnsortedWrapper } from './styles';
 
 export const Unsorted = (props) => {
-    const { contextMenuIsOpen, toggleContextMenuIsOpen, optionBtnRef, contextMenuListener } = useContextMenuListener();
+    const { contextMenuIsOpen, 
+            toggleContextMenuIsOpen, 
+            optionBtnRef, 
+            contextMenuListener } = useContextMenuListener();
 
-    return (
-        <UnsortedWrapper>
-            {props.index === 0 ?
-                <div
-                    className='unsorted'
-                    onClick={() => props.toggleUnsortedUncompletedIsOpen(!props.unsortedUncompletedIsOpen)}
-                >
-                    Unsorted
-                    <span className={props.unsortedUncompletedIsOpen ? 'dropIcon' : 'upIcon'}></span>
-                </div>
-                :
-                null
-            }
-            {props.unsortedUncompletedIsOpen ?
-                <div className='task'>
-                    {props.index === 0 && props.task.deadline === 'deadline' ? <div className='title'>With deadline</div> : null}
-                    {props.index === 0 && props.task.deadline === 'exact time' ? <div className='title'>Planned</div> : null}
-                    {props.index !== 0 && props.task.deadline === 'exact time'
-                        && props.tasks[props.index - 1].deadline === 'deadline' ?
-                        <div className='title'>
-                            Planned
-                        </div>
-                        :
-                        null
-                    }
+    if (props.unsortedUncompletedIsOpen) {
+        return (
+            <UnsortedWrapper className='Task'>
                     <div className={!props.task.time ? 'task-body' : Number(props.task.time.replace(':', '')) < Number(new Date().toLocaleTimeString().slice(0, 5).replace(':', '')) ? 'task-body-overdue' : 'task-body'}>
                         <img
                             className='important-btn'
@@ -68,10 +49,9 @@ export const Unsorted = (props) => {
                         </span>
                         {contextMenuIsOpen ? <ContextMenu toggleContextMenuIsOpen={toggleContextMenuIsOpen} task={props.task} /> : null}
                     </div>
-                </div>
-                :
-                null
-            }
-        </UnsortedWrapper>
-    )
+            </UnsortedWrapper>
+        )
+    } else {
+        return null;
+    }
 }

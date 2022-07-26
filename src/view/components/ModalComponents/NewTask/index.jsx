@@ -1,15 +1,15 @@
 // Core
-import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+
+// Hooks
+import { useOption } from '../../../../tools/';
 
 // Styles
 import { NewTaskWrapper } from './styles';
 
 export const NewTask = (props) => {
-
-    const lists = useSelector(state => state.general.lists);
-    const tasks = useSelector(state => state.general.tasks);
+    const {tasks, lists} = useOption();
 
     const validationSchema = Yup.object().shape({
         name: Yup.string()
@@ -168,35 +168,35 @@ export const NewTask = (props) => {
                         htmlFor='deadline'
                     >
                         <label htmlFor='deadline-true'>
-                            Deadline
+                            <span>Deadline time</span>
+                            <input
+                                id='deadline'
+                                name='deadline'
+                                type='radio'
+                                onChange={formik.handleChange}
+                                value={'deadline'}
+                            />
                         </label>
-                        <input 
-                            id='deadline' 
-                            name='deadline' 
-                            type='radio' 
-                            onChange={formik.handleChange} 
-                            value={'deadline'} 
-                        />
                         <label htmlFor='deadline-false'>
-                            Exact time
+                            <span>Exact time</span>
+                            <input
+                                id='deadline'
+                                name='deadline'
+                                type='radio'
+                                onChange={formik.handleChange}
+                                value={'exact time'}
+                            />
                         </label>
-                        <input 
-                            id='deadline' 
-                            name='deadline' 
-                            type='radio' 
-                            onChange={formik.handleChange} 
-                            value={'exact time'} 
-                        />
                         <label htmlFor='deadline-false'>
-                            Not planned
+                            <span>Not planned</span>
+                            <input
+                                id='deadline'
+                                name='deadline'
+                                type='radio'
+                                onChange={formik.handleChange}
+                                value={'not planned'}
+                            />
                         </label>
-                        <input 
-                            id='deadline' 
-                            name='deadline' 
-                            type='radio' 
-                            onChange={formik.handleChange} 
-                            value={'not planned'} 
-                        />
                     </label>
                     <label htmlFor='date'>
                         {formik.errors.date && formik.touched.date ? 

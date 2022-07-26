@@ -6,50 +6,22 @@ import { ContextMenu } from '../../';
 
 // Assets
 import importantIcon from '../../../../assets/icons/important.png';
-import nonImportantIcon from '../../../../assets/icons/not-important.png';
+import nonImportantIcon from '../../../../assets/icons/not-important-white.png';
 
 // Styles
 import { GeneralWrapper } from './styles';
 
 export const General = (props) => {
-    const { optionBtnRef, toggleContextMenuIsOpen, contextMenuListener, contextMenuIsOpen } = useContextMenuListener();
+    const { optionBtnRef, 
+            toggleContextMenuIsOpen, 
+            contextMenuListener, 
+            contextMenuIsOpen } = useContextMenuListener();
 
     return (
-        <GeneralWrapper className='Task' length={props.task.name.length + props.task.list.length}>
-            {props.index === 0 ? 
-                <div 
-                    onClick={() => {
-                        if (props.arrayDateIsOpen.some(date => date === props.task.date)) {
-                            props.setArrayDateIsOpen(props.arrayDateIsOpen.filter(date => date !== props.task.date))
-                        } else {
-                            props.setArrayDateIsOpen([...props.arrayDateIsOpen, props.task.date])
-                        }
-                    }} 
-                    className='title'
-                >
-                    {props.page && !props.task.date ? `Not planned` : `${props.task.date.slice(8, 10)}.${props.task.date.slice(5, 7)}.${props.task.date.slice(2, 4)}`}
-                    <span className={props.arrayDateIsOpen.some(date => date === props.task.date) ? 'dropIcon' : 'upIcon'}></span>
-                </div> 
-                : 
-                null
-            }
-            {props.index !== 0 && props.task.date !== props.tasks[props.index - 1].date ? 
-                <div 
-                    onClick={() => {
-                        if (props.arrayDateIsOpen.some(date => date === props.task.date)) {
-                            props.setArrayDateIsOpen(props.arrayDateIsOpen.filter(date => date !== props.task.date))
-                        } else {
-                            props.setArrayDateIsOpen([...props.arrayDateIsOpen, props.task.date])
-                        }
-                    }}  
-                    className='title'
-                >
-                    {props.page && !props.task.date ? `Not planned` : `${props.task.date.slice(8, 10)}.${props.task.date.slice(5, 7)}.${props.task.date.slice(2, 4)}`}
-                    <span className={props.arrayDateIsOpen.some(date => date === props.task.date) ? 'dropIcon' : 'upIcon'}></span>
-                </div> 
-                : 
-                null
-            }
+        <GeneralWrapper 
+            className='Task' 
+            length={props.task.name.length + props.task.list.length}
+        >
             {!props.arrayDateIsOpen.some(date => date === props.task.date) ? 
                 <div className='task-body'>
                     <img

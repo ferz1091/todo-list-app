@@ -7,7 +7,7 @@ export const useHour = () => {
     const date = `${newDate.getFullYear()}-${Math.trunc((newDate.getMonth() + 1) / 10)}${Math.round((((newDate.getMonth() + 1) / 10) - Math.trunc((newDate.getMonth() + 1) / 10)) * 10)}-${Math.trunc(newDate.getDate() / 10)}${Math.round(((newDate.getDate() / 10) - Math.trunc(newDate.getDate() / 10)) * 10)}`
     const time = newDate.toLocaleTimeString().slice(0, 5);
     const displayDate = newDate.toDateString();
-    console.log(date);
+    
     return {
         date,
         time,

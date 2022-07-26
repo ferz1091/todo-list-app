@@ -5,7 +5,10 @@ import { useOption, useDay } from '../../../../tools';
 import { DayWrapper } from './styles';
 
 export const Day = () => {
-    const { task, rescheduleExactTime, toggleDayModalActive, resetCurrentTask } = useOption();
+    const { currentTask, 
+            rescheduleExactTime, 
+            toggleDayModalActive, 
+            resetCurrentTask } = useOption();
     const { date } = useDay();
 
     return (
@@ -19,10 +22,10 @@ export const Day = () => {
         >
             <div className='modal'>
                 <span>
-                    {`Task "${task.name}" the task will be reschedule to`}
+                    {`Task "${currentTask.name}" will be reschedule to`}
                 </span>
-                <span>
-                    {task.time} {new Date(new Date(task.date).getTime() + 86400000).toDateString()}
+                <span id='time'>
+                    {currentTask.time} {new Date(new Date(currentTask.date).getTime() + 86400000).toDateString()}
                 </span>
                 <span>
                     <button 
@@ -36,7 +39,7 @@ export const Day = () => {
                     </button>
                     <button 
                         onClick={() => { 
-                            rescheduleExactTime({ ...task, date: date }); 
+                            rescheduleExactTime({ ...currentTask, date: date }); 
                             resetCurrentTask() 
                             }
                         }

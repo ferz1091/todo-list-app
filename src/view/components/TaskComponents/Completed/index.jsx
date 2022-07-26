@@ -6,13 +6,17 @@ import { ContextMenu } from '../../';
 
 // Assets
 import importantIcon from '../../../../assets/icons/important.png';
-import nonImportantIcon from '../../../../assets/icons/not-important.png';
+import nonImportantIcon from '../../../../assets/icons/not-important-white.png';
 
 // Styles
 import { CompletedWrapper } from './styles';
 
 export const Completed = (props) => {
-    const { contextMenuIsOpen, toggleContextMenuIsOpen, optionBtnRef, contextMenuListener } = useContextMenuListener();
+    const { 
+            contextMenuIsOpen, 
+            toggleContextMenuIsOpen, 
+            optionBtnRef, 
+            contextMenuListener } = useContextMenuListener();
 
     if (props.list) {
         return (
@@ -20,7 +24,7 @@ export const Completed = (props) => {
                 {
                     props.index === 0 ?
                     <div
-                        className='list'
+                        className='List header'
                         onClick={() => props.toggleCompletedListIsOpen(props.list.name)}
                     >
                         {props.list.name}
@@ -30,7 +34,7 @@ export const Completed = (props) => {
                     null
                 }
                 {props.list.isOpen.completed ? 
-                    <CompletedWrapper className='task'>
+                    <CompletedWrapper className='Task'>
                         <div className='task-body'>
                             <img 
                                 className='important-btn' 
@@ -58,7 +62,14 @@ export const Completed = (props) => {
                                 className='complete-btn' 
                                 onClick={() => props.toggleIsCompleted(props.task.name, props.task.list)}>
                             </span>
-                            {contextMenuIsOpen ? <ContextMenu toggleContextMenuIsOpen={toggleContextMenuIsOpen} task={props.task} /> : null}
+                            {contextMenuIsOpen ? 
+                                <ContextMenu 
+                                    toggleContextMenuIsOpen={toggleContextMenuIsOpen} 
+                                    task={props.task} 
+                                /> 
+                                : 
+                                null
+                            }
                         </div>
                     </CompletedWrapper>
                     :
@@ -96,7 +107,14 @@ export const Completed = (props) => {
                         className='complete-btn' 
                         onClick={() => props.toggleIsCompleted(props.task.name, props.task.list, new Date().toLocaleString())}>
                     </span>
-                    {contextMenuIsOpen ? <ContextMenu toggleContextMenuIsOpen={toggleContextMenuIsOpen} task={props.task} /> : null}
+                    {contextMenuIsOpen ? 
+                        <ContextMenu 
+                            toggleContextMenuIsOpen={toggleContextMenuIsOpen} 
+                            task={props.task} 
+                        /> 
+                        : 
+                        null
+                    }
                 </div>
             </CompletedWrapper>
         )

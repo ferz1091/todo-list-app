@@ -24,9 +24,12 @@ export const ContextMenu = (props) => {
             deleteTask } = useContextMenu();
 
     return (
-        <ContextMenuWrapper className='ContextMenu' props={props.task.important}>
+        <ContextMenuWrapper 
+            className='ContextMenu' 
+            props={props.task.important}
+        >
             <div 
-                className='important' 
+                className='important btn' 
                 onClick={() => toggleTaskImportant(props.task.name, props.task.list)}
             >
                 <span className={props.task.important ? 'important-icon' : 'not-important-icon'}>
@@ -36,8 +39,8 @@ export const ContextMenu = (props) => {
                 </span>
             </div>
             <div 
-                className='complete' 
-                onClick={() => toggleIsCompleted(props.task.name, props.task.list)}
+                className='complete btn' 
+                onClick={() => toggleIsCompleted(props.task.name, props.task.list, new Date().toLocaleString())}
             >
                 <span className={props.task.isCompleted ? 'completed-icon' : 'not-completed-icon'}>
                 </span>
@@ -52,7 +55,7 @@ export const ContextMenu = (props) => {
                             {
                                 props.task.time ?
                                     <div 
-                                        className='hour' 
+                                        className='hour btn' 
                                         onClick={() => { 
                                             toggleHourModalActive(true); 
                                             setCurrentTask(props.task) 
@@ -66,7 +69,7 @@ export const ContextMenu = (props) => {
                                     </div>
                                     :
                                     <div 
-                                        className='time' 
+                                        className='time btn' 
                                         onClick={() => { 
                                             toggleExactTimeModalActive(true); 
                                             setCurrentTask(props.task) 
@@ -80,7 +83,7 @@ export const ContextMenu = (props) => {
                                     </div>
                             }
                             <div 
-                                className='day' 
+                                className='day btn' 
                                 onClick={() => { 
                                     toggleDayModalActive(true); 
                                     setCurrentTask(props.task) 
@@ -96,25 +99,25 @@ export const ContextMenu = (props) => {
                         : 
                         null
                     }
-                    <div 
-                        className='change-date' 
-                        onClick={() => { 
-                            toggleChangeDateModalActive(true); 
-                            setCurrentTask(props.task) 
-                            }
-                        }
-                    >
-                        <span className='change-date-icon'></span>
-                        <span className='option'>
-                            Change date
-                        </span>
-                    </div>
                 </>
                 :
                 null
             }
+            <div
+                className='change-date btn'
+                onClick={() => {
+                    toggleChangeDateModalActive(true);
+                    setCurrentTask(props.task)
+                }
+                }
+            >
+                <span className='change-date-icon'></span>
+                <span className='option'>
+                    {props.task.deadline === 'not planned' ? 'Set date' : 'Change date'}
+                </span>
+            </div>
             <div 
-                className='change-list' 
+                className='change-list btn' 
                 onClick={(e) => {
                     e.stopPropagation();
                     toggleMoveTaskIsOpen(true);
@@ -132,7 +135,7 @@ export const ContextMenu = (props) => {
                     <div className='change-list-subpanel'
                         onClick={() => props.toggleContextMenuIsOpen(false)}>
                         <div
-                            className='option-subpanel' 
+                            className='option-subpanel btn' 
                             onClick={() => {
                                 toggleNewListModalActive(true); 
                                 setCurrentTask(props.task);
@@ -152,7 +155,7 @@ export const ContextMenu = (props) => {
                                     }
                                 }
                             }
-                            className={props.task.list ? 'option-subpanel' : 'option-subpanel-disabled'}>
+                            className={props.task.list ? 'option-subpanel btn' : 'option-subpanel-disabled'}>
                             <span className='cross-icon'></span>
                             <span>
                                 Delete from {`"${props.task.list}"`}
@@ -165,7 +168,7 @@ export const ContextMenu = (props) => {
                                 }
                                 }
                             }
-                            className={lists.filter((list) => list.name !== props.task.list).length > 0 ? 'option-subpanel' : 'option-subpanel-disabled'}
+                            className={lists.filter((list) => list.name !== props.task.list).length > 0 ? 'option-subpanel btn' : 'option-subpanel-disabled'}
                         >
                             <span className='moveTo-icon'></span>
                             <span>
@@ -178,7 +181,7 @@ export const ContextMenu = (props) => {
                 }
             </div>
             <div 
-                className='info'
+                className='info btn'
                 onClick={() => {
                     toggleInfoModalActive(true);
                     setCurrentTask(props.task);
@@ -191,7 +194,7 @@ export const ContextMenu = (props) => {
                 </span>
             </div>
             <div 
-                className='editInfo'
+                className='editInfo btn'
                 onClick={() => {
                     toggleEditInfoModalActive(true);
                     setCurrentTask(props.task);
@@ -204,7 +207,7 @@ export const ContextMenu = (props) => {
                 </span>
             </div>
             <div 
-                className='delete' 
+                className='delete btn' 
                 onClick={() => { 
                     toggleDeleteTaskModalActive(true); 
                     setCurrentTask(props.task);
