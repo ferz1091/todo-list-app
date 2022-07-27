@@ -27,7 +27,8 @@ const initialState = {
             created: "11.07.2022, 16:47:02",
             important: false,
             isCompleted: false,
-        }], isOpen: { uncompleted: true, completed: true } }]
+        }], isOpen: { uncompleted: true, completed: true } }],
+        background: 'crystal'
 };
 
 export const generalSlice = createSlice({

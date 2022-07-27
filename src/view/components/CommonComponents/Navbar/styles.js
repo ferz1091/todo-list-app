@@ -8,7 +8,6 @@ flex-direction: column;
 margin-top: 10px;
 background-color: rgba(70,70,70, 0.7);
 border-radius: 35px 35px 0 0;
-/* border: 2px solid rgba(70,70,70, 0.7); */
 font-size: calc(12px + 6 * (1400 / 100vw));
 white-space: nowrap;
 overflow: hidden;

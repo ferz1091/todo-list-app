@@ -39,6 +39,9 @@ export const useGeneral = () => {
     function deleteList(list) {
         dispatch(generalActions.deleteList(list))
     }
+    function toggleBackground(bg) {
+        dispatch(generalActions.toggleBackground(bg))
+    }
     return {
         addTask,
         addList,
@@ -51,5 +54,6 @@ export const useGeneral = () => {
         deleteTask,
         renameList,
         deleteList,
+        toggleBackground,
     }
 }

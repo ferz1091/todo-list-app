@@ -300,3 +300,9 @@ export const deleteList = (state, action) => {
         lists: state.lists.filter(list => list.name !== action.payload)
     }
 }
+export const toggleBackground = (state, action) => {
+    return {
+        ...state,
+        background: action.payload
+    }
+}

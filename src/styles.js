@@ -3,7 +3,13 @@ import styled from 'styled-components';
 
 // Assets
 import optionsIcon from './assets/icons/menu-white.png';
-import spaceBg from './assets/backgrounds/space.jpg';
+import beachBg from './assets/backgrounds/beach.jpg';
+import bayBg from './assets/backgrounds/bay.jpg';
+import boatBg from './assets/backgrounds/boat.jpg';
+import waveBg from './assets/backgrounds/wave.jpg';
+import fieldBg from './assets/backgrounds/field.jpg';
+import mountBg from './assets/backgrounds/mount.jpg';
+import sunsetBg from './assets/backgrounds/sunset.jpg';
 
 export const AppWrapper = styled.div`
 display: grid;
@@ -13,7 +19,18 @@ grid-template-areas: 'Header Header Header'
                     '. Content .';
 width: 100vw;
 height: 100vh;
-background-image: url(${spaceBg});
+background-image: ${props => props.background === 'beach' ? `url(${beachBg})` :
+                        props.background === 'bay' ? `url(${bayBg})` :
+                            props.background === 'boat' ? `url(${boatBg})` : 
+                                props.background === 'wave' ? `url(${waveBg})` :
+                                    props.background === 'field' ? `url(${fieldBg})` :
+                                        props.background === 'mount' ? `url(${mountBg})` :
+                                            props.background === 'sunset' ? `url(${sunsetBg})` :
+                                                props.background === 'lawrencium' ? `linear-gradient(to right, #0f0c29, #302b63, #24243e)` :
+                                                    props.background === 'margo' ? `linear-gradient(to right, #c9d6ff, #e2e2e2)` : 
+                                                        props.background === 'red-sunset' ? `linear-gradient(to right, #355c7d, #6c5b7b, #c06c84)` :
+                                                            props.background === 'crystal' ? `linear-gradient(to right, #159957, #155799)` :
+                                                                `linear-gradient(to right, #ee0979, #ff6a00)`};
 background-size: cover;
 overflow: hidden;
 @media (max-width: 768px) {
@@ -39,7 +56,7 @@ overflow: hidden;
         display: flex;
         padding: 5px 0;
         margin: 5px 0;
-        background-color: rgba(70, 70, 70, 0.85);
+        background-color: rgba(70, 70, 70, 0.7);
         color: white;
         border-radius: 10px;
         .prop-name {
@@ -129,7 +146,7 @@ overflow: hidden;
     }
     .control-panel {
         position: relative;
-        z-index: 999;
+        z-index: 1;
         display: flex;
         justify-content: center;
         margin: 10px 0;
@@ -139,7 +156,7 @@ overflow: hidden;
             margin: 0;
             padding: 5px 15px;
             border-radius: 25px;
-            background-color: rgba(70,70,70, 0.85);
+            background-color: rgba(70,70,70, 0.7);
             box-shadow: inset 0px 0px 3px rgb(30,30,30);
             color: white;
         }
@@ -155,6 +172,7 @@ overflow: hidden;
     background-color: #0ed145;
     color: white;
     border: none;
+    box-shadow: inset 0px 0px 2px black;
 }
 .add-task-btn:hover {
     background-color: #0b9a33;

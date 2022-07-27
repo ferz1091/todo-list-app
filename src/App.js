@@ -16,11 +16,15 @@ import { AppWrapper, ContentWrapper } from './styles';
 
 const App = () => {
   const lists = useSelector(state => state.general.lists);
+  const background = useSelector(state => state.general.background);
   const {modalIsOn} = useModalElement();
 
   return (
     <BrowserRouter>
-      <AppWrapper className='AppWrapper'>
+      <AppWrapper 
+        className='AppWrapper'
+        background={background}
+      >
         <Header />
         <ContentWrapper className='ContentWrapper'>
           <Navbar />

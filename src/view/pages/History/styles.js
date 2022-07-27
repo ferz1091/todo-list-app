@@ -22,5 +22,5 @@ margin: 5px 0;
 padding: 0 5px;
 padding-bottom: ${props => props.isOpen ? '5px;' : '0px;'};
 border-radius: 25px;
-background-color: rgba(70, 70, 70, 0.85);
+background-color: rgba(70, 70, 70, 0.4);
 `;
