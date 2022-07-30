@@ -1,8 +1,8 @@
 // Hooks
-import { useTasks } from '../../../tools';
+import { useTasks, usePagesThemeMenu } from '../../../tools';
 
 // Components
-import { List, Unsorted, Completed } from '../../components';
+import { List, Unsorted, Completed, ThemePagesPanel } from '../../components';
 
 // Styles
 import { UnplannedWrapper, TaskSectionWrapper } from './styles';
@@ -21,11 +21,16 @@ export const Unplanned = () => {
             toggleCompletedListIsOpen,
             toggleUnsortedCompletedIsOpen,
             unsortedCompletedIsOpen } = useTasks();
+    const { colors } = usePagesThemeMenu();
 
     return (
-        <UnplannedWrapper className='Unplanned page'>
+        <UnplannedWrapper 
+            className='Unplanned page'
+            colorWrapper={colors.find(page => page.name === 'Unplanned').wrapper}
+        >
             <div className='control-panel'>
                 <h1>Unplanned</h1>
+                <ThemePagesPanel page='Unplanned' />
             </div>
             {!tasks.some(task => task.deadline === 'not planned')
                 && lists.every(list => !list.tasks.some(task => task.deadline === 'not planned')) ?
@@ -41,6 +46,8 @@ export const Unplanned = () => {
                         className='List wrapper' 
                         isOpen={list.isOpen.uncompleted}
                         key={index}
+                        colorWrapper={colors.find(page => page.name === 'Unplanned').wrapper}
+                        colorTask={colors.find(page => page.name === 'Unplanned').task}
                     >
                         {list.tasks.filter(task => !task.isCompleted && task.deadline === 'not planned')
                             .sort((a, b) => {
@@ -68,6 +75,8 @@ export const Unplanned = () => {
                 <TaskSectionWrapper 
                     className='Unsorted wrapper' 
                     isOpen={unsortedUncompletedIsOpen}
+                    colorWrapper={colors.find(page => page.name === 'Unplanned').wrapper}
+                    colorTask={colors.find(page => page.name === 'Unplanned').task}
                 >
                     <div
                         className='Unsorted header'
@@ -114,6 +123,8 @@ export const Unplanned = () => {
                                     key={index} 
                                     className='List wrapper'
                                     isOpen={list.isOpen.completed}
+                                    colorWrapper={colors.find(page => page.name === 'Unplanned').wrapper}
+                                    colorTask={colors.find(page => page.name === 'Unplanned').task}
                                 >
                                     {[...list.tasks.filter(task => task.deadline === 'not planned' && task.isCompleted)].sort((a, b) => {
                                         return sortUnplanned(a, b)
@@ -139,7 +150,9 @@ export const Unplanned = () => {
                     {tasks.some(task => task.isCompleted && task.deadline === 'not planned') && completedIsOpen ?
                         <TaskSectionWrapper 
                             className='Unsorted wrapper'
-                            isOpen={unsortedCompletedIsOpen}    
+                            isOpen={unsortedCompletedIsOpen}
+                            colorWrapper={colors.find(page => page.name === 'Unplanned').wrapper}
+                            colorTask={colors.find(page => page.name === 'Unplanned').task}
                         >
                             <div 
                                 onClick={() => toggleUnsortedCompletedIsOpen(!unsortedCompletedIsOpen)} 

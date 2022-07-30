@@ -39,9 +39,10 @@ export const useGeneral = () => {
     function deleteList(list) {
         dispatch(generalActions.deleteList(list))
     }
-    function toggleBackground(bg) {
-        dispatch(generalActions.toggleBackground(bg))
+    function toggleListColor(wrapper, task, list) {
+        dispatch(generalActions.toggleColor({wrapper, task, list}))
     }
+
     return {
         addTask,
         addList,
@@ -54,6 +55,6 @@ export const useGeneral = () => {
         deleteTask,
         renameList,
         deleteList,
-        toggleBackground,
+        toggleListColor
     }
 }

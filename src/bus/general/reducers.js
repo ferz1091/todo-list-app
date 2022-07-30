@@ -4,9 +4,30 @@ export const addTask = (state, action) => {
             ...state,
             lists: state.lists.map((list) => {
                 if (list.name === action.payload.list) {
-                    return {
-                        ...list,
-                        tasks: [...list.tasks, action.payload]
+                    if (list.tasks.some(task => task.name === action.payload.name)) {
+                        let tempName = action.payload.name;
+                        // eslint-disable-next-line no-loop-func
+                        while (list.tasks.some(task => task.name === tempName)) {
+                            if (tempName === action.payload.name) {
+                                console.log(tempName);
+                                if (isNaN(Number(tempName.slice(-1)))) {
+                                    tempName = tempName + '1'
+                                } else {
+                                    tempName = tempName + '.1'
+                                }
+                            } else {
+                                tempName = tempName.slice(0, -1) + (Number(tempName.slice(-1)) + 1);
+                            }
+                        }
+                        return {
+                            ...list,
+                            tasks: [...list.tasks, { ...action.payload, name: tempName }]
+                        }
+                    } else {
+                        return {
+                            ...list,
+                            tasks: [...list.tasks, action.payload]
+                        }
                     }
                 } else {
                     return {
@@ -300,9 +321,23 @@ export const deleteList = (state, action) => {
         lists: state.lists.filter(list => list.name !== action.payload)
     }
 }
-export const toggleBackground = (state, action) => {
+export const toggleColor = (state, action) => {
     return {
         ...state,
-        background: action.payload
+        lists: state.lists.map(list => {
+            if (list.name === action.payload.list) {
+                return {
+                    ...list,
+                    colors: {
+                        wrapper: action.payload.wrapper,
+                        task: action.payload.task
+                    }
+                }
+            } else {
+                return {
+                    ...list
+                }
+            }
+        })
     }
 }

@@ -2,7 +2,7 @@
 import { useSortTasks, useTasks } from '../../../tools';
 
 // Components
-import { General } from '../../components';
+import { General, ThemePagesPanel } from '../../components';
 
 // Styles
 import { ListWrapper, TaskSectionWrapper } from './styles';
@@ -18,7 +18,10 @@ export const List = (props) => {
     const { sortList } = useSortTasks();
 
     return (
-        <ListWrapper className='List page'>
+        <ListWrapper 
+            className='List page'
+            colorWrapper={props.colors.wrapper}
+        >
                 <div className='control-panel'>
                     <h1>
                         {props.name}
@@ -29,6 +32,10 @@ export const List = (props) => {
                     <span 
                         onClick={() => toggleDeleteListModalActive(true)} 
                         className='deleteList-icon'></span>
+                <ThemePagesPanel 
+                    page='List' 
+                    list={props.name} 
+                />
                 </div> 
                 {props.tasks.length === 0 ?
                     <div className='Empty-tasks-div'>
@@ -47,6 +54,8 @@ export const List = (props) => {
                                     className='Date wrapper'
                                     isOpen={!ListArrayDateIsOpen.some(date => date === taskF.date)}
                                     key={indexF}
+                                    colorWrapper={props.colors.wrapper}
+                                    colorTask={props.colors.task}
                                 >
                                     <div
                                         onClick={() => {
@@ -83,6 +92,8 @@ export const List = (props) => {
                                 className='Date wrapper' 
                                 isOpen={!ListArrayDateIsOpen.some(date => date === taskF.date)}
                                 key={indexF}
+                                colorWrapper={props.colors.wrapper}
+                                colorTask={props.colors.task}
                             >
                                 <div
                                     onClick={() => {

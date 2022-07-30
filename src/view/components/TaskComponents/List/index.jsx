@@ -17,21 +17,9 @@ export const List = (props) => {
             optionBtnRef, 
             contextMenuListener } = useContextMenuListener();
 
-    return (
-        <>
-            {
-                props.index === 0 ?
-                    <div
-                        className='List header'
-                        onClick={() => props.toggleUncompletedListIsOpen(props.list.name)}
-                    >
-                        {props.list.name}
-                        <span className={props.list.isOpen.uncompleted ? 'dropIcon' : 'upIcon'}></span>
-                    </div>
-                    :
-                    null
-            }
-            {props.list.isOpen.uncompleted ?
+
+        if (props.list.isOpen.uncompleted) {
+            return (
                 <ListWrapper className='Task'>
                     <div className={!props.task.time ? 'task-body' : Number(props.task.time.replace(':', '')) < Number(new Date().toLocaleTimeString().slice(0, 5).replace(':', '')) ? 'task-body-overdue' : 'task-body'}>
                         <img
@@ -63,9 +51,10 @@ export const List = (props) => {
                         {contextMenuIsOpen ? <ContextMenu toggleContextMenuIsOpen={toggleContextMenuIsOpen} task={props.task} /> : null}
                     </div>
                 </ListWrapper>
-                :
+            )
+        } else {
+            return (
                 null
-            }
-        </>
-    )
+            )
+        }     
 }

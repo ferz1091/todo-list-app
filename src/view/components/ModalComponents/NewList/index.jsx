@@ -27,7 +27,7 @@ export const NewList = (props) => {
         },
         validationSchema,
         onSubmit: (values) => {
-            props.addList({name: values.name.trim(), tasks: [], isOpen: {uncompleted: true, completed: true}});
+            props.addList({ name: values.name.trim(), tasks: [], isOpen: { uncompleted: true, completed: true }, colors: { wrapper: '70, 70, 70', task: '70, 70, 70' }});
             if (currentTask) {
                 props.deleteTask(currentTask.name, currentTask.list);
                 props.addTask({...currentTask, list: values.name});

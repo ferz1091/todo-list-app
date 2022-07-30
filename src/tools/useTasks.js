@@ -18,7 +18,10 @@ export const useTasks = () => {
     const [completedIsOpen, toggleCompletedIsOpen] = useState(true);
     const tasks = useSelector(state => state.general.tasks);
     const lists = useSelector(state => state.general.lists);
-    const { toggleUncompletedListIsOpen, toggleCompletedListIsOpen, toggleTaskImportant, toggleIsCompleted } = useGeneral();
+    const { toggleUncompletedListIsOpen, 
+            toggleCompletedListIsOpen, 
+            toggleTaskImportant, 
+            toggleIsCompleted } = useGeneral();
     const { toggleDeleteListModalActive, toggleRenameListModalActive, toggleNewListModalActive } = useModal();
     const { sortByDeadline, sortCompletedFromLists, sortUnplanned, sortPlanned } = useSortTasks();
 

@@ -7,3 +7,5 @@ export * from './useHour';
 export * from './useDay';
 export * from './useMoveTask';
 export * from './useModalElement';
+export * from './useThemeMenu';
+export * from './usePagesThemeMenu';

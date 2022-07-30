@@ -1,8 +1,8 @@
 // Hooks
-import { useTasks, useSortTasks } from '../../../tools';
+import { useTasks, useSortTasks, usePagesThemeMenu } from '../../../tools';
 
 // Components
-import { General } from '../../components';
+import { General, ThemePagesPanel } from '../../components';
 
 // Styles
 import { HistoryWrapper, TaskSectionWrapper } from './styles';
@@ -16,11 +16,16 @@ export const History = () => {
             HistoryArrayDateIsOpen, 
             setHistoryArrayDateIsOpen } = useTasks();
     const { sortPlanned } = useSortTasks();
+    const { colors } = usePagesThemeMenu();
 
     return (
-        <HistoryWrapper className='History page'>
+        <HistoryWrapper 
+            className='History page'
+            colorWrapper={colors.find(page => page.name === 'History').wrapper}
+        >
             <div className='control-panel'>
                 <h1>History</h1>
+                <ThemePagesPanel page='History'/>
             </div>
             {tasks.some(task => task.date && new Date(task.date) < new Date() && new Date(task.date).toLocaleDateString() !== new Date().toLocaleDateString()) ||
                 lists.some(list => list.tasks.some(task => task.date && new Date(task.date) < new Date() && new Date(task.date).toLocaleDateString() !== new Date().toLocaleDateString())) ?
@@ -41,6 +46,8 @@ export const History = () => {
                             <TaskSectionWrapper 
                                 className='Date wrapper' 
                                 isOpen={!HistoryArrayDateIsOpen.some(date => date === taskF.date)} 
+                                colorWrapper={colors.find(page => page.name === 'History').wrapper}
+                                colorTask={colors.find(page => page.name === 'History').task}
                                 key={indexF}
                             >
                                 <div
@@ -72,7 +79,9 @@ export const History = () => {
                         return (
                             <TaskSectionWrapper 
                                 className='Date wrapper' 
-                                isOpen={!HistoryArrayDateIsOpen.some(date => date === taskF.date)} 
+                                isOpen={!HistoryArrayDateIsOpen.some(date => date === taskF.date)}
+                                colorWrapper={colors.find(page => page.name === 'History').wrapper}
+                                colorTask={colors.find(page => page.name === 'History').task}
                                 key={indexF}
                             >
                                 {taskF.date !== tasksF[indexF - 1].date ?

@@ -16,7 +16,7 @@ import { AppWrapper, ContentWrapper } from './styles';
 
 const App = () => {
   const lists = useSelector(state => state.general.lists);
-  const background = useSelector(state => state.general.background);
+  const background = useSelector(state => state.theme.background);
   const {modalIsOn} = useModalElement();
 
   return (

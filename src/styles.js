@@ -3,6 +3,9 @@ import styled from 'styled-components';
 
 // Assets
 import optionsIcon from './assets/icons/menu-white.png';
+import themeIcon from './assets/icons/theme.png';
+import themeHoverIcon from './assets/icons/theme-hover.png';
+import themeActiveIcon from './assets/icons/theme-active.png';
 import beachBg from './assets/backgrounds/beach.jpg';
 import bayBg from './assets/backgrounds/bay.jpg';
 import boatBg from './assets/backgrounds/boat.jpg';
@@ -56,7 +59,7 @@ overflow: hidden;
         display: flex;
         padding: 5px 0;
         margin: 5px 0;
-        background-color: rgba(70, 70, 70, 0.7);
+        /* background-color: rgba(70, 70, 70, 0.7); */
         color: white;
         border-radius: 10px;
         .prop-name {
@@ -110,9 +113,9 @@ overflow: hidden;
     .task-body-overdue {
         background-color: rgba(255, 0, 0, 0.1);
     }
-    .task-body:hover {
+    /* .task-body:hover {
         background-color: rgba(85,85,85);
-    }
+    } */
     .Completed {
             background-color: rgba(0, 250, 0, 0.2);
             border-radius: 25px;
@@ -156,9 +159,65 @@ overflow: hidden;
             margin: 0;
             padding: 5px 15px;
             border-radius: 25px;
-            background-color: rgba(70,70,70, 0.7);
             box-shadow: inset 0px 0px 3px rgb(30,30,30);
             color: white;
+        }
+        .theme-icon {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translate(0, -50%);
+            width: 20px;
+            height: 20px;
+            background-image: url(${themeIcon});
+        }
+        .theme-icon:hover {
+            background-image: url(${themeHoverIcon});
+        }
+        .theme-icon:active {
+            background-image: url(${themeActiveIcon});
+        }
+        .theme-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgb(70, 70, 70);
+            padding: 10px;
+            border-radius: 15px;
+            overflow: hidden;
+            input {
+                width: 50px;
+                height: 50px;
+                border-radius: 5px;
+                margin: 5px 0;
+            }
+            label {
+                display: block;
+                font-size: 12px;
+                width: 100%;
+                text-align: center;
+                color: white;
+            }
+        }
+        @keyframes enter-panel {
+        0% {
+            width: 0px;
+            opacity: 0;
+
+        }
+        100% {
+            width: 50px;
+            opacity: 1;
+        }
+        }
+        .panel-enter-active {
+            animation: enter-panel 0.3s linear;
+        }
+        .panel-exit-active {
+            animation: enter-panel 0.3s linear reverse;
+        }
+        .panel-exit {
+            opacity: 0;
         }
     }
 }

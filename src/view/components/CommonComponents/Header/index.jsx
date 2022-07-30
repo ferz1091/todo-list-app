@@ -1,9 +1,8 @@
 // Core
-import { useState, useRef } from 'react';
 import { Transition } from 'react-transition-group';
 
-// Bus
-import { useGeneral } from '../../../../bus/general';
+// Hooks
+import { useThemeMenu } from '../../../../tools';
 
 // Assets
 import Logo from '../../../../assets/icons/logo.png';
@@ -12,16 +11,12 @@ import Logo from '../../../../assets/icons/logo.png';
 import { HeaderWrapper } from './styles';
 
 export const Header = () => {
-    const panelRef = useRef();
-    const iconRef = useRef();
-    const { toggleBackground } = useGeneral();
-    const [themeMenuIsOpen, toggleThemeMenuIsOpen] = useState(false);
-    function themeMenuListener(e) {
-        if (e.path[0] !== panelRef.current && e.path[1] !== panelRef.current && e.path[0] !== iconRef.current) {
-            toggleThemeMenuIsOpen(false);
-            document.removeEventListener('click', themeMenuListener);
-        }
-    }
+    const { panelRef, 
+            iconRef, 
+            toggleBackground, 
+            themeMenuIsOpen, 
+            toggleThemeMenuIsOpen, 
+            themeMenuListener } = useThemeMenu();
 
     return (
         <HeaderWrapper className='Header'>

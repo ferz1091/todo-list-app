@@ -101,6 +101,6 @@ export const useSortTasks = () => {
         sortCompletedFromLists,
         sortUnplanned,
         sortPlanned,
-        sortList,
+        sortList
     }
 }

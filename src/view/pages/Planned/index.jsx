@@ -1,8 +1,8 @@
 // Hooks
-import { useTasks } from '../../../tools';
+import { useTasks, usePagesThemeMenu } from '../../../tools';
 
 // Components
-import { General } from '../../components';
+import { General, ThemePagesPanel } from '../../components';
 
 // Styles
 import { PlannedWrapper, TaskSectionWrapper } from './styles';
@@ -16,11 +16,16 @@ export const Planned = () => {
             toggleTaskImportant,
             PlannedArrayDateIsOpen,
             setPlannedArrayDateIsOpen } = useTasks();
+    const { colors } = usePagesThemeMenu();
     
     return (
-        <PlannedWrapper className='Planned page'>
+        <PlannedWrapper 
+            className='Planned page'
+            colorWrapper={colors.find(page => page.name === 'Planned').wrapper}
+        >
             <div className='control-panel'>
                 <h1>Planned</h1>
+                <ThemePagesPanel page='Planned' />
             </div>
             {tasks.some(task => task.date && new Date(task.date) > new Date()) ||
                 lists.some(list => list.tasks.some(task => task.date && new Date(task.date) > new Date())) ?
@@ -43,6 +48,8 @@ export const Planned = () => {
                                     className='Date wrapper' 
                                     isOpen={!PlannedArrayDateIsOpen.some(date => date === taskF.date)}
                                     key={indexF}
+                                    colorWrapper={colors.find(page => page.name === 'Planned').wrapper}
+                                    colorTask={colors.find(page => page.name === 'Planned').task}
                                 >
                                     <div
                                         onClick={() => {
@@ -77,6 +84,8 @@ export const Planned = () => {
                                     className='Date wrapper' 
                                     isOpen={!PlannedArrayDateIsOpen.some(date => date === taskF.date)}
                                     key={indexF}
+                                    colorWrapper={colors.find(page => page.name === 'Planned').wrapper}
+                                    colorTask={colors.find(page => page.name === 'Planned').task}
                                 >
                                     {taskF.date !== tasksF[indexF - 1].date ? 
                                         <div
