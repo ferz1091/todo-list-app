@@ -1,3 +1,6 @@
+// Core
+import React from 'react';
+
 // Hooks
 import { useTasks, useSortTasks, usePagesThemeMenu } from '../../../tools';
 

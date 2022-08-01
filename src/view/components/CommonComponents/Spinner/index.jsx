@@ -1,3 +1,6 @@
+// Core
+import React from 'react';
+
 // Assets
 import spinner from '../../../../assets/spinner.svg';
 

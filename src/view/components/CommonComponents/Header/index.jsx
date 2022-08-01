@@ -1,4 +1,7 @@
 // Core
+import React from 'react';
+
+// Core
 import { Transition } from 'react-transition-group';
 
 // Hooks

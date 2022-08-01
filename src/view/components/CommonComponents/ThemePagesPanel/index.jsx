@@ -1,4 +1,5 @@
 // Core
+import React from 'react';
 import { useFormik } from 'formik';
 import { CSSTransition } from 'react-transition-group';
 

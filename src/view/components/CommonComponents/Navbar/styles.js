@@ -35,6 +35,7 @@ a {
     margin: 5px 0;
     width: 100%;
     text-align: center;
+    font-weight: 600;
     text-decoration: none;
     transition-duration: 0.3s;
     transition-property: all;

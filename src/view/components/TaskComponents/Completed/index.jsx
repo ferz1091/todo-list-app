@@ -1,3 +1,6 @@
+// Core
+import React from 'react';
+
 // Hooks
 import { useContextMenuListener } from '../../../../tools';
 
